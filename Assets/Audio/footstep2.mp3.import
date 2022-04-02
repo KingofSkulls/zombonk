@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/footstep2.mp3-fda16113e1b8736f6bfe6b140a5a8260.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/footstep2.mp3"
+dest_files=[ "res://.import/footstep2.mp3-fda16113e1b8736f6bfe6b140a5a8260.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

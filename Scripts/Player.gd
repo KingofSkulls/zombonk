@@ -12,19 +12,19 @@ onready var camera : Camera = get_node("Camera")
 
 var mouse_sens := 1.0
 var camera_anglev := 0.0
-
+var runWalktimerStarted := false
 var can_jump := 0.0
 
 var vel := Vector3()
 
 var mouseDelta := Vector2()
-
+var stopped = true
 var sprint_time := 2.0
 var base_sprint_time := 2.0
-
+var lastFoot=0
 var base_fov := 70
 var sprint_fov := 80
-
+var lastStepSound = 9
 var last_sprint := 0
 var sprint := 0
 var timealive := 0
@@ -63,6 +63,7 @@ func _process(delta):
 		$FOVTween.remove_all()
 		$FOVTween.interpolate_property($Camera, "fov", $Camera.fov, sprint_fov, 0.2)
 		$FOVTween.start()
+		#stopped=true
 		
 	if last_sprint == 1 and sprint == 0:
 		$FOVTween.remove_all()
@@ -117,6 +118,23 @@ func _physics_process(delta):
 		vel.y = jumpForce
 		can_jump = 0
 		
+	if abs(vel.x) > 0.2 or abs(vel.z) > 0.2:
+		if !runWalktimerStarted:
+			runWalktimerStarted=true
+			if stopped:
+				stopped = false
+				if lastFoot ==0:
+					play_footstep2()
+				else:
+					play_footstep()
+			if Input.is_action_pressed("sprint") and sprint_time > 0.0:
+				get_node("RunTimer").start(.5)
+			else:
+				get_node("WalkTimer").start(.8)
+	else:
+		stopped = true
+		
+		
 func reducespot(delta):
 	var target_node = get_node("Camera/Flashlight")
 	var energy = target_node.get_param(target_node.PARAM_ENERGY)
@@ -130,3 +148,69 @@ func _on_batteryCollected():
 	var target_node = get_node("Camera/Flashlight")
 	target_node.set_param(target_node.PARAM_ENERGY, 2.2)
 	
+
+func play_footstep():
+	var randFootstep = floor(rand_range(0,5))
+	var footstepPlayer = get_node("footstepPlayer")
+	while randFootstep == lastStepSound:
+		randFootstep = floor(rand_range(0,5))
+	match str(randFootstep):
+		"0":
+			footstepPlayer.stream = preload("res://Assets//Audio//footstep1.mp3")
+		"1":
+			footstepPlayer.stream = preload("res://Assets//Audio//footstep2.mp3")
+		"2":
+			footstepPlayer.stream = preload("res://Assets//Audio//footstep3.mp3")
+		"3":
+			footstepPlayer.stream = preload("res://Assets//Audio//footstep4.mp3")
+		"4":
+			footstepPlayer.stream = preload("res://Assets//Audio//footstep5.mp3")
+	footstepPlayer.stream.set_loop(false)
+	footstepPlayer.play()
+	lastStepSound = randFootstep
+	lastFoot =0
+
+func play_footstep2():
+	var randFootstep = floor(rand_range(0,5))
+	var footstepPlayer = get_node("footstepPlayer2")
+	while randFootstep == lastStepSound:
+		randFootstep = floor(rand_range(0,5))
+	match str(randFootstep):
+		"0":
+			footstepPlayer.stream = preload("res://Assets//Audio//footstep1.mp3")
+		"1":
+			footstepPlayer.stream = preload("res://Assets//Audio//footstep2.mp3")
+		"2":
+			footstepPlayer.stream = preload("res://Assets//Audio//footstep3.mp3")
+		"3":
+			footstepPlayer.stream = preload("res://Assets//Audio//footstep4.mp3")
+		"4":
+			footstepPlayer.stream = preload("res://Assets//Audio//footstep5.mp3")
+	footstepPlayer.stream.set_loop(false)
+	footstepPlayer.play()
+	lastStepSound = randFootstep
+	lastFoot =1
+	
+
+
+func _on_RunTimer_timeout():
+	runWalktimerStarted=false
+	if vel.x !=0:
+		if Input.is_action_pressed("sprint"):
+			if lastFoot ==0:
+				play_footstep2()
+			else:
+				play_footstep()
+		else:
+			pass
+
+func _on_WalkTimer_timeout():
+	runWalktimerStarted=false
+	if vel.x !=0:
+		if Input.is_action_pressed("sprint"):
+			pass
+		else:
+			if lastFoot ==0:
+				play_footstep2()
+			else:
+				play_footstep()
