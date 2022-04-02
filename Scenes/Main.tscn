@@ -78,4 +78,10 @@ tile_data = PoolIntArray( -1048587, 0, 0, -1048586, 0, 0, -1048585, 0, 0, -10485
 environment = SubResource( 2 )
 
 [node name="Battery" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.03456, 2.70102, -3.45634 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.03456, 1.44792, -3.45634 )
+
+[node name="UI" type="Control" parent="."]
+margin_right = 586.0
+margin_bottom = 205.0
+
+[connection signal="batteryCollected" from="Battery" to="Player" method="_on_batteryCollected"]

@@ -119,9 +119,14 @@ func _physics_process(delta):
 		
 func reducespot(delta):
 	var target_node = get_node("Camera/Flashlight")
-	#target_node.PARAM_ENERGY -=delta
 	var energy = target_node.get_param(target_node.PARAM_ENERGY)
 	energy -=delta*0.05
 	if energy <=0:
 		energy =0
 	target_node.set_param(target_node.PARAM_ENERGY, energy)
+
+
+func _on_batteryCollected():
+	var target_node = get_node("Camera/Flashlight")
+	target_node.set_param(target_node.PARAM_ENERGY, 2.2)
+	
