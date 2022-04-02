@@ -10,7 +10,7 @@ const maxLookAngle := 90.0
 
 onready var camera : Camera = get_node("Camera")
 
-var mouse_sens := 0.3
+var mouse_sens := 1.0
 var camera_anglev := 0.0
 
 var can_jump := 0.0
