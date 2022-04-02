@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Models/9v.obj" type="ArrayMesh" id=1]
+
+[sub_resource type="Skin" id=1]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="SoftBody" type="SoftBody" parent="."]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.0336786, -1.0444, 0.396957 )
+mesh = ExtResource( 1 )
+skin = SubResource( 1 )
+material/0 = null
+material/1 = null
+material/2 = null
+material/3 = null
+material/4 = null
+material/5 = null
+material/6 = null
+material/7 = null
+material/8 = null
+material/9 = null
+material/10 = null
+physics_enabled = false

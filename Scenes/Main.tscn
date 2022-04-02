@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Models/MazeMeshes.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Sprites/white.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Sprites/black.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Materials/satara_night_4k.exr" type="Texture" id=5]
+[ext_resource path="res://Scenes/battery.tscn" type="PackedScene" id=6]
 
 [sub_resource type="TileSet" id=1]
 0/name = "black.png 0"
@@ -75,3 +76,6 @@ tile_data = PoolIntArray( -1048587, 0, 0, -1048586, 0, 0, -1048585, 0, 0, -10485
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
+
+[node name="Battery" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.03456, 2.70102, -3.45634 )

@@ -27,7 +27,7 @@ var sprint_fov := 80
 
 var last_sprint := 0
 var sprint := 0
-
+var timealive := 0
 func _input(event):         
 	if event is InputEventMouseMotion:
 		mouseDelta = event.relative
@@ -40,6 +40,7 @@ func _ready():
 
 func _process(delta):
 	reducespot(delta)
+	timealive+=delta
 	camera.rotation_degrees.x -= mouseDelta.y * lookSensitivity * delta
 	
 	camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, minLookAngle, maxLookAngle)
