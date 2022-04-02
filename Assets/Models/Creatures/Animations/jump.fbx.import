@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/jump.fbx-1bb68abbc1cd539ecd31cb6f781f595e.scn"
+path="res://.import/jump.fbx-da6a14954a9a4208fe8cd471af8e03aa.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Creatures/animated-characters-1/Animations/jump.fbx"
-dest_files=[ "res://.import/jump.fbx-1bb68abbc1cd539ecd31cb6f781f595e.scn" ]
+source_file="res://Assets/Models/Creatures/Animations/jump.fbx"
+dest_files=[ "res://.import/jump.fbx-da6a14954a9a4208fe8cd471af8e03aa.scn" ]
 
 [params]
 

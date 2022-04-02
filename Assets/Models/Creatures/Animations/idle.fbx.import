@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/idle.fbx-32110d0e28150880b88e9a73ef1dd20d.scn"
+path="res://.import/idle.fbx-d32fdee3d6cfbe286df38e0841a2dd83.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Creatures/animated-characters-1/Animations/idle.fbx"
-dest_files=[ "res://.import/idle.fbx-32110d0e28150880b88e9a73ef1dd20d.scn" ]
+source_file="res://Assets/Models/Creatures/Animations/idle.fbx"
+dest_files=[ "res://.import/idle.fbx-d32fdee3d6cfbe286df38e0841a2dd83.scn" ]
 
 [params]
 

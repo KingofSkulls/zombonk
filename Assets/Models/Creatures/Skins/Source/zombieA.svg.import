@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/zombieA.svg-56967498627ae6ebf9e302c9df0ee214.stex"
+path="res://.import/zombieA.svg-9353615f566ab9df6e13fa8edbd72e3b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Models/Creatures/animated-characters-1/Skins/Source/zombieA.svg"
-dest_files=[ "res://.import/zombieA.svg-56967498627ae6ebf9e302c9df0ee214.stex" ]
+source_file="res://Assets/Models/Creatures/Skins/Source/zombieA.svg"
+dest_files=[ "res://.import/zombieA.svg-9353615f566ab9df6e13fa8edbd72e3b.stex" ]
 
 [params]
 

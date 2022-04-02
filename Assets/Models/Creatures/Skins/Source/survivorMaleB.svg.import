@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/survivorMaleB.svg-853da0093fc978373b1718bcc338db91.stex"
+path="res://.import/survivorMaleB.svg-c74ae2df3c887426698df9034c7f2096.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Models/Creatures/animated-characters-1/Skins/Source/survivorMaleB.svg"
-dest_files=[ "res://.import/survivorMaleB.svg-853da0093fc978373b1718bcc338db91.stex" ]
+source_file="res://Assets/Models/Creatures/Skins/Source/survivorMaleB.svg"
+dest_files=[ "res://.import/survivorMaleB.svg-c74ae2df3c887426698df9034c7f2096.stex" ]
 
 [params]
 

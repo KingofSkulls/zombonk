@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Preview.png-c7a9380cc2e816a613689c1f7f6df96a.stex"
+path="res://.import/Preview.png-5849a2906375f6e2d78374d3a6c52ef1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Models/Creatures/animated-characters-1/Preview.png"
-dest_files=[ "res://.import/Preview.png-c7a9380cc2e816a613689c1f7f6df96a.stex" ]
+source_file="res://Assets/Models/Creatures/Preview.png"
+dest_files=[ "res://.import/Preview.png-5849a2906375f6e2d78374d3a6c52ef1.stex" ]
 
 [params]
 

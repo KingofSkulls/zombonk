@@ -1,6 +1,6 @@
 extends KinematicBody
 
-const lookSensitivity := 10
+const lookSensitivity := 50
 const moveSpeed := 1.5
 const gravity := 8
 const jumpForce := 2
@@ -31,11 +31,15 @@ var sprint := 0
 func _input(event):         
 	if event is InputEventMouseMotion:
 		mouseDelta = event.relative
+	if event is InputEventKey:
+		if (event as InputEventKey).scancode == KEY_ESCAPE:
+			get_tree().quit() 
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _process(delta):
+	reducespot(delta)
 	camera.rotation_degrees.x -= mouseDelta.y * lookSensitivity * delta
 	
 	camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, minLookAngle, maxLookAngle)
@@ -111,3 +115,12 @@ func _physics_process(delta):
 	if Input.is_action_pressed("jump") and can_jump != 0:
 		vel.y = jumpForce
 		can_jump = 0
+		
+func reducespot(delta):
+	var target_node = get_node("Camera/Flashlight")
+	#target_node.PARAM_ENERGY -=delta
+	var energy = target_node.get_param(target_node.PARAM_ENERGY)
+	energy -=delta*0.05
+	if energy <=0:
+		energy =0
+	target_node.set_param(target_node.PARAM_ENERGY, energy)

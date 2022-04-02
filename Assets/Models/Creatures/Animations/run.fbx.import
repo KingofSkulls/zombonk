@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/run.fbx-f7a4a5f53f360ff9d5730de2ffb7befe.scn"
+path="res://.import/run.fbx-8cf05104187f915f4592d06e8504caa4.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Creatures/animated-characters-1/Animations/run.fbx"
-dest_files=[ "res://.import/run.fbx-f7a4a5f53f360ff9d5730de2ffb7befe.scn" ]
+source_file="res://Assets/Models/Creatures/Animations/run.fbx"
+dest_files=[ "res://.import/run.fbx-8cf05104187f915f4592d06e8504caa4.scn" ]
 
 [params]
 

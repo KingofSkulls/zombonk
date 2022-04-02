@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/survivorFemaleA.png-a000c38ca3c84afe1b5257a42cd44164.stex"
+path="res://.import/survivorFemaleA.png-848bc6c2ae1f2a960de5187268a8b2b0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Models/Creatures/animated-characters-1/Skins/survivorFemaleA.png"
-dest_files=[ "res://.import/survivorFemaleA.png-a000c38ca3c84afe1b5257a42cd44164.stex" ]
+source_file="res://Assets/Models/Creatures/Skins/survivorFemaleA.png"
+dest_files=[ "res://.import/survivorFemaleA.png-848bc6c2ae1f2a960de5187268a8b2b0.stex" ]
 
 [params]
 
