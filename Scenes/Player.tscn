@@ -16,7 +16,7 @@ current = true
 [node name="Flashlight" type="SpotLight" parent="Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125515, -0.25724, -0.0228176 )
 light_color = Color( 0.996078, 1, 0.858824, 1 )
-light_energy = 2.226
+light_energy = 2.2
 spot_angle = 19.7468
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
