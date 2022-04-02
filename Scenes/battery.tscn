@@ -28,4 +28,9 @@ material/10 = null
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
 shape = SubResource( 1 )
 
+[node name="OmniLight" type="OmniLight" parent="."]
+light_color = Color( 1, 0.847059, 0.631373, 1 )
+light_energy = 12.39
+omni_range = 0.865732
+
 [connection signal="body_entered" from="." to="." method="_on_Battery_body_entered"]
