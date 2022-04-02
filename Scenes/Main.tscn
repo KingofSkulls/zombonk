@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Models/MazeMeshes.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Sprites/white.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Sprites/black.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Materials/satara_night_4k.exr" type="Texture" id=5]
 
 [sub_resource type="TileSet" id=1]
 0/name = "black.png 0"
@@ -35,9 +36,18 @@
 1/shapes = [  ]
 1/z_index = 0
 
+[sub_resource type="PanoramaSky" id=3]
+panorama = ExtResource( 5 )
+
 [sub_resource type="Environment" id=2]
+background_mode = 2
+background_sky = SubResource( 3 )
+background_energy = 0.01
 ambient_light_color = Color( 1, 0.164706, 0.164706, 1 )
 ambient_light_energy = 0.02
+fog_depth_begin = 47.7
+fog_depth_end = 24.5
+fog_depth_curve = 0.153893
 
 [node name="Spatial" type="Spatial"]
 
