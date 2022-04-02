@@ -13,8 +13,6 @@ config_version=4
 config/name="Zombonk"
 config/icon="res://icon.png"
 
-<<<<<<< Updated upstream
-=======
 [input]
 
 move_forward={
@@ -54,7 +52,6 @@ sprint={
  ]
 }
 
->>>>>>> Stashed changes
 [physics]
 
 common/enable_pause_aware_picking=true
