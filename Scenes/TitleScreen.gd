@@ -8,7 +8,9 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	$HandTween.interpolate_property($Hand, "rect_position", 
+		Vector2($Hand.rect_position.x, $Hand.rect_position.y), Vector2($Hand.rect_position.x, 494), 1.5)
+	$HandTween.start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,17 +28,24 @@ func _on_Credits_pressed() -> void:
 func _on_Exit_pressed() -> void:
 	get_tree().quit()
 
-
-
 func _on_Start_mouse_entered() -> void:
-	get_node("Hand").rect_position.y = 382
-
+	$HandTween.remove_all()
+	$HandTween.interpolate_property($Hand, "rect_position", 
+		Vector2($Hand.rect_position.x, $Hand.rect_position.y), Vector2($Hand.rect_position.x, 382), 0.1)
+	$HandTween.start()
 
 func _on_Credits_mouse_entered() -> void:
-	get_node("Hand").rect_position.y = 437
+	$HandTween.remove_all()
+	$HandTween.interpolate_property($Hand, "rect_position", 
+		Vector2($Hand.rect_position.x, $Hand.rect_position.y), Vector2($Hand.rect_position.x, 437), 0.1)
+	$HandTween.start()
 	
 func _on_Exit_mouse_entered() -> void:
-	get_node("Hand").rect_position.y = 494
+	$HandTween.remove_all()
+	$HandTween.interpolate_property($Hand, "rect_position", 
+		Vector2($Hand.rect_position.x, $Hand.rect_position.y), Vector2($Hand.rect_position.x, 494), 0.1)
+	$HandTween.start()
+
 
 
 

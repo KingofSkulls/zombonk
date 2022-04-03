@@ -123,6 +123,8 @@ texture = ExtResource( 5 )
 [node name="Main Menu Theme" type="AudioStreamPlayer2D" parent="."]
 autoplay = true
 
+[node name="HandTween" type="Tween" parent="."]
+
 [connection signal="mouse_entered" from="VBoxContainer/MarginContainer/Start" to="." method="_on_Start_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/Start" to="." method="_on_Start_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/MarginContainer2/Credits" to="." method="_on_Credits_mouse_entered"]
