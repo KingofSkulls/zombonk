@@ -19,8 +19,8 @@ var vel := Vector3()
 
 var mouseDelta := Vector2()
 var stopped = true
-var sprint_time := 2.0
-var base_sprint_time := 2.0
+var sprint_time := 4.0
+var base_sprint_time := 4.0
 var lastFoot=0
 var base_fov := 70
 var sprint_fov := 80
@@ -138,15 +138,18 @@ func _physics_process(delta):
 func reducespot(delta):
 	var target_node = get_node("Camera/Flashlight")
 	var energy = target_node.get_param(target_node.PARAM_ENERGY)
+	var angle = target_node.get_param(target_node.PARAM_SPOT_ANGLE)
 	energy -=delta*0.05
 	if energy <=0:
 		energy =0
 	target_node.set_param(target_node.PARAM_ENERGY, energy)
+	target_node.set_param(target_node.PARAM_SPOT_ANGLE, angle-delta*.15)
 
 
 func _on_batteryCollected():
 	var target_node = get_node("Camera/Flashlight")
 	target_node.set_param(target_node.PARAM_ENERGY, 2.2)
+	target_node.set_param(target_node.PARAM_SPOT_ANGLE, 19)
 	
 
 func play_footstep():
