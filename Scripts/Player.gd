@@ -16,7 +16,7 @@ var runWalktimerStarted := false
 var can_jump := 0.0
 
 var vel := Vector3()
-
+var health = 100
 var mouseDelta := Vector2()
 var stopped = true
 var sprint_time := 4.0
@@ -217,3 +217,12 @@ func _on_WalkTimer_timeout():
 				play_footstep2()
 			else:
 				play_footstep()
+
+
+func _on_Zombie_playerDamaged():
+	health-=33
+	if health <=0:
+		death()
+
+func death():
+	print("You Died")

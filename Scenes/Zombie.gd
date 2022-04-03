@@ -7,6 +7,7 @@ var threshold = 0.1
 var previous_pos = Vector3(0,0,0)
 var player_in_range = false
 var state = "spawn"
+var attackfinished = true
 var cur_target = Vector3(0,0.5,0)
 onready var nav = get_parent()
 onready var player = $"../../Player"
@@ -19,7 +20,7 @@ func _ready():
 func _physics_process(delta):
 	if path.size() > 0:
 		move_to()
-		if state == "wander" or state == "chase" or state =="track":
+		if (state == "wander" or state == "chase" or state =="track") and attackfinished:
 			get_node("zombie_test_animations/AnimationPlayer").play("Walk In Place Retarget")
 		var pv = player.global_transform.origin
 		var zv = global_transform.origin
@@ -35,7 +36,6 @@ func _physics_process(delta):
 			var radius = 30
 			var vec = Vector3(rand_range(-radius, radius), 0.5, rand_range(-radius, radius))
 			get_target_path(vec)
-	print(state)
 
 func move_to():
 	if path_node >= path.size():
@@ -62,9 +62,10 @@ func _on_Attack_body_entered(body):
 		#set bool true
 		player_in_range = true
 		#run timer
-		get_node("AttackTimer").start(.5)
+		get_node("AttackTimer").start(.45)
 		#run attack anim
 		get_node("zombie_test_animations/AnimationPlayer").play("Attack Retarget")
+		attackfinished=false
 
 func _on_Attack_body_exited(body):
 	#check if thing exited is player, set bool to false
@@ -74,10 +75,12 @@ func _on_Attack_body_exited(body):
 
 func _on_AttackTimer_timeout():
 	#when timer runs out, check if bool still true
+	attackfinished=true
 	if player_in_range == true:
 			#emit signal, deal damage
 			emit_signal("playerDamaged")
-			get_node("AttackTimer").start(.5)
+			get_node("AttackTimer").start(.45)
+			attackfinished = false
 			#run attack anim
 			get_node("zombie_test_animations/AnimationPlayer").play("Attack Retarget")
 func _on_PlayerDetect_body_entered(body):
