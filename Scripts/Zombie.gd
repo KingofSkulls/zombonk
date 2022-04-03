@@ -18,6 +18,7 @@ var walk_animation = "Walk In Place Retarget"
 onready var nav = get_parent()
 onready var player = $"../../Player"
 onready var anim = $AnimationPlayer
+onready var Battery = load("res://Scenes/battery.tscn")
 signal playerDamaged
 
 func _ready():
@@ -187,6 +188,11 @@ func _on_Brains_timeout():
 
 func bonk() -> void:
 	if !finishedspawning:
+		var tmp_batter = Battery.instance()
+		
+		tmp_batter.translation = transform.origin + Vector3(0, 1.5, 0)
+		
+		get_parent().add_child(tmp_batter)
 		queue_free()
 	$BonkedTimer.start(3)
 	bonked = true
