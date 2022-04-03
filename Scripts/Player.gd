@@ -265,6 +265,8 @@ func _on_WalkTimer_timeout() -> void:
 
 func _on_Zombie_playerDamaged() -> void:
 	health -= 33
+	print(health)
+	$DamageVignette.self_modulate.a = (100 - health) / 100
 	if health <= 0:
 		death()
 
