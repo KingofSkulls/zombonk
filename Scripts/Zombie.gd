@@ -21,6 +21,7 @@ signal playerDamaged
 
 func _ready():
 	get_node("zombieAnimations/AnimationPlayer").play("Spawn")
+	$Zombiecollisionshape.disabled = true
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("SuperSecretFunnyRun"):
@@ -29,7 +30,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta):
 	if !bonked and finishedspawning:
 		if path.size() > 0:
-			if abs(cur_target.x - global_transform.origin.x) <= 1 or abs(cur_target.z - global_transform.origin.z) <= 1:
+			if abs(cur_target.x - global_transform.origin.x) <= 1 or abs(cur_target.z - global_transform.origin.z) <= 1 and state != "attack":
 				move_to()
 			if (state == "wander" or state == "chase" or state =="track") and attackfinished:
 				get_node("zombieAnimations/AnimationPlayer").play(walk_animation)
@@ -64,10 +65,12 @@ func get_target_path(target_pos):
 	path = nav.get_simple_path(global_transform.origin, target_pos)
 
 func _on_Timer_timeout():
+	#spawning
 	if state=="spawn":
 		state = "wander"
 	path_node = 0
 	finishedspawning = true
+	$Zombiecollisionshape.disabled = false
 
 func _on_Attack_body_entered(body):
 	#check if body is player
