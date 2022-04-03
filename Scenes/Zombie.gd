@@ -9,6 +9,7 @@ var player_in_range = false
 var state = "spawn"
 var attackfinished = true
 var cur_target = Vector3(0,0.5,0)
+var walk_animation = "Walk In Place Retarget"
 onready var nav = get_parent()
 onready var player = $"../../Player"
 onready var anim = $AnimationPlayer
@@ -17,11 +18,15 @@ signal playerDamaged
 func _ready():
 	pass
 
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("SuperSecretFunnyRun"):
+		walk_animation = "FunnyRunny Retarget"
+
 func _physics_process(delta):
 	if path.size() > 0:
 		move_to()
 		if (state == "wander" or state == "chase" or state =="track") and attackfinished:
-			get_node("zombie_test_animations/AnimationPlayer").play("Walk In Place Retarget")
+			get_node("zombie_test_animations/AnimationPlayer").play(walk_animation)
 		var pv = player.global_transform.origin
 		var zv = global_transform.origin
 		var angle = atan2((pv.z - zv.z), (pv.x - zv.x))
