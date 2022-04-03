@@ -28,7 +28,7 @@ func _physics_process(delta):
 	if path.size() > 0:
 		move_to()
 		if (state == "wander" or state == "chase" or state =="track") and attackfinished:
-			get_node("zombie_test_animations/AnimationPlayer").play(walk_animation)
+			get_node("zombieAnimations/AnimationPlayer").play(walk_animation)
 			get_node("Brains").start(floor(rand_range(1,5)))
 		var pv = player.global_transform.origin
 		var zv = global_transform.origin
@@ -72,7 +72,7 @@ func _on_Attack_body_entered(body):
 		#run timer
 		get_node("AttackTimer").start(.45)
 		#run attack anim
-		get_node("zombie_test_animations/AnimationPlayer").play("Attack Retarget")
+		get_node("zombieAnimations/AnimationPlayer").play("Attack Retarget")
 		attackfinished=false
 
 func _on_Attack_body_exited(body):
@@ -90,7 +90,7 @@ func _on_AttackTimer_timeout():
 			get_node("AttackTimer").start(.45)
 			attackfinished = false
 			#run attack anim
-			get_node("zombie_test_animations/AnimationPlayer").play("Attack Retarget")
+			get_node("zombieAnimations/AnimationPlayer").play("Attack Retarget")
 			
 func _on_PlayerDetect_body_entered(body):
 	if body.name == "Player":

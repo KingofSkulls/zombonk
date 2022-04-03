@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/zombie_test_animations.glb-5d233e622fe1a96454ac1a826f4289aa.scn"
+path="res://.import/zombieAnimations.glb-cba6e9fb11a41d5ca75d734ffddd6975.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Creatures/zombie_test_animations.glb"
-dest_files=[ "res://.import/zombie_test_animations.glb-5d233e622fe1a96454ac1a826f4289aa.scn" ]
+source_file="res://Assets/Models/Creatures/zombieAnimations.glb"
+dest_files=[ "res://.import/zombieAnimations.glb-cba6e9fb11a41d5ca75d734ffddd6975.scn" ]
 
 [params]
 
