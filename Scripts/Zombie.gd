@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta):
 	if !bonked and finishedspawning:
 		if path.size() > 0:
-			if (abs(cur_target.x - global_transform.origin.x) <= 1 or abs(cur_target.z - global_transform.origin.z) <= 1) and state != "attack":
+			if state != "attack":
 				move_to()
 			#if state == "chase":
 				#get_target_path(player.global_transform.origin)
@@ -114,7 +114,7 @@ func _on_AttackTimer_timeout():
 			#emit signal, deal damage
 			if finishedspawning and !bonked:
 				get_node("AttackTimer").start(.45)
-				emit_signal("playerDamaged")
+				player._on_Zombie_playerDamaged()
 				attackfinished = false
 				#run attack anim
 				get_node("zombieAnimations/AnimationPlayer").play("Attack Retarget")
