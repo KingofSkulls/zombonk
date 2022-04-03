@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Audio/footstep1.mp3" type="AudioStream" id=2]
 [ext_resource path="res://Assets/Audio/footstep2.mp3" type="AudioStream" id=3]
 [ext_resource path="res://Scenes/arm.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/ArmCamera.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Sprites/damage vignette.png" type="Texture" id=6]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -80,6 +81,12 @@ camera_path = NodePath("../../../Camera")
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.697093 )
 shape = SubResource( 2 )
+
+[node name="DamageVignette" type="Sprite" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 512, 300 )
+scale = Vector2( 1.024, 0.6 )
+texture = ExtResource( 6 )
 
 [connection signal="timeout" from="WalkTimer" to="." method="_on_WalkTimer_timeout"]
 [connection signal="timeout" from="RunTimer" to="." method="_on_RunTimer_timeout"]
