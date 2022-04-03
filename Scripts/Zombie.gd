@@ -22,6 +22,7 @@ signal playerDamaged
 func _ready():
 	get_node("zombieAnimations/AnimationPlayer").play("Spawn")
 	$Zombiecollisionshape.disabled = true
+	$Attack/CollisionShape.disabled = true
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("SuperSecretFunnyRun"):
@@ -31,8 +32,10 @@ func _physics_process(delta):
 	print(state)
 	if !bonked and finishedspawning:
 		if path.size() > 0:
-			if abs(cur_target.x - global_transform.origin.x) <= 1 or abs(cur_target.z - global_transform.origin.z) <= 1 and state != "attack":
-				move_to()
+			#if abs(cur_target.x - global_transform.origin.x) <= 1 or abs(cur_target.z - global_transform.origin.z) <= 1 and state != "attack":
+			move_to()
+			#if state == "chase":
+				#get_target_path(player.global_transform.origin)
 			if (state == "wander" or state == "chase" or state =="track") and attackfinished:
 				get_node("zombieAnimations/AnimationPlayer").play(walk_animation)
 				get_node("Brains").start(floor(rand_range(1,5)))
@@ -74,6 +77,7 @@ func _on_Timer_timeout():
 	path_node = 0
 	finishedspawning = true
 	$Zombiecollisionshape.disabled = false
+	$Attack/CollisionShape.disabled = false
 
 func _on_Attack_body_entered(body):
 	#check if body is player
@@ -84,23 +88,23 @@ func _on_Attack_body_entered(body):
 		#run timer
 		get_node("AttackTimer").start(.45)
 		#run attack anim
-		if finishedspawning and !bonked:
-			get_node("zombieAnimations/AnimationPlayer").play("Attack Retarget")
-			attackfinished=false
+		get_node("zombieAnimations/AnimationPlayer").play("Attack Retarget")
+		attackfinished=false
 
 func _on_Attack_body_exited(body):
 	#check if thing exited is player, set bool to false
 	state="chase"
 	if body.name == "Player":
 		player_in_range = false
+		get_target_path(player.global_transform.origin)
 
 func _on_AttackTimer_timeout():
 	#when timer runs out, check if bool still true
 	attackfinished=true
 	if player_in_range == true:
 			#emit signal, deal damage
-			get_node("AttackTimer").start(.45)
 			if finishedspawning and !bonked:
+				get_node("AttackTimer").start(.45)
 				emit_signal("playerDamaged")
 				attackfinished = false
 				#run attack anim
@@ -179,7 +183,8 @@ func bonk() -> void:
 	$BonkedTimer.start(3)
 	bonked = true
 	get_node("zombieAnimations/AnimationPlayer").play("Idle Retarget")
-	#$Zombiecollisionshape.disabled = true
+	$Zombiecollisionshape.disabled = true
+	$Attack/CollisionShape.disabled = true
 
 
 func _on_CollisionArea_area_entered(area: Area):
@@ -189,4 +194,5 @@ func _on_CollisionArea_area_entered(area: Area):
 
 func _on_BonkedTimer_timeout():
 	bonked=false
-	#$Zombiecollisionshape.disabled = false
+	$Zombiecollisionshape.disabled = false
+	$Attack/CollisionShape.disabled = false
