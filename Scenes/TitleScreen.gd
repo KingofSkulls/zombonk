@@ -20,7 +20,7 @@ func _on_Start_pressed() -> void:
 	get_tree().change_scene("res://Scenes/Main.tscn")
 
 func _on_Credits_pressed() -> void:
-	pass # Replace with credits screen when it is finished
+	get_tree().change_scene("res://Scenes/Credit.tscn")
 
 
 func _on_Exit_pressed() -> void:
