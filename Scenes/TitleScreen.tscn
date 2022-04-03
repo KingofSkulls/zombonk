@@ -1,16 +1,24 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://Assets/GUI/Title/background.png" type="Texture" id=2]
 [ext_resource path="res://Assets/GUI/Fonts/oldLondon.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Assets/GUI/Title/TitleScreenTheme.tres" type="Theme" id=4]
+[ext_resource path="res://Assets/GUI/Title/Title_text.png" type="Texture" id=5]
+[ext_resource path="res://Assets/GUI/Title/grass.png" type="Texture" id=6]
+[ext_resource path="res://Assets/GUI/Title/hand.png" type="Texture" id=7]
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Scene" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_scale = Vector2( 0.2, 0.2 )
@@ -23,31 +31,91 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -128.0
-margin_top = -129.0
+margin_top = -263.0
 margin_right = 128.0
+margin_bottom = -115.0
 theme = ExtResource( 4 )
 
-[node name="Start" type="Button" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 margin_right = 256.0
-margin_bottom = 10.0
+margin_bottom = 30.0
+custom_constants/margin_top = 0
+
+[node name="Start" type="Button" parent="VBoxContainer/MarginContainer"]
+margin_right = 256.0
+margin_bottom = 30.0
 theme = ExtResource( 4 )
 custom_fonts/font = ExtResource( 3 )
 text = "Start Game"
 
-[node name="Credits" type="Button" parent="VBoxContainer"]
-margin_top = 14.0
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 34.0
 margin_right = 256.0
-margin_bottom = 24.0
+margin_bottom = 89.0
+custom_constants/margin_top = 25
+
+[node name="Credits" type="Button" parent="VBoxContainer/MarginContainer2"]
+margin_top = 25.0
+margin_right = 256.0
+margin_bottom = 55.0
 custom_fonts/font = ExtResource( 3 )
 text = "Credits"
 
-[node name="Exit" type="Button" parent="VBoxContainer"]
-margin_top = 28.0
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 93.0
 margin_right = 256.0
-margin_bottom = 38.0
+margin_bottom = 148.0
+custom_constants/margin_top = 25
+
+[node name="Exit" type="Button" parent="VBoxContainer/MarginContainer3"]
+margin_top = 25.0
+margin_right = 256.0
+margin_bottom = 55.0
 custom_fonts/font = ExtResource( 3 )
 text = "Exit Game"
 
-[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_Start_pressed"]
-[connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_Credits_pressed"]
-[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_Exit_pressed"]
+[node name="Hand" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -42.0
+margin_top = 308.0
+margin_right = 463.0
+margin_bottom = 2496.0
+rect_scale = Vector2( 0.2, 0.2 )
+mouse_filter = 2
+texture = ExtResource( 7 )
+stretch_mode = 4
+
+[node name="Grass" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 431.0
+margin_top = 570.0
+margin_right = 342.0
+margin_bottom = 455.0
+rect_scale = Vector2( 0.2, 0.2 )
+mouse_filter = 2
+texture = ExtResource( 6 )
+stretch_mode = 4
+
+[node name="TitleText" type="TextureRect" parent="."]
+margin_left = -707.0
+margin_top = -565.0
+margin_right = 2876.0
+margin_bottom = 189.0
+rect_scale = Vector2( 0.2, 0.2 )
+rect_pivot_offset = Vector2( 1096, 338 )
+texture = ExtResource( 5 )
+
+[node name="Main Menu Theme" type="AudioStreamPlayer2D" parent="."]
+autoplay = true
+
+[connection signal="mouse_entered" from="VBoxContainer/MarginContainer/Start" to="." method="_on_Start_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/MarginContainer2/Credits" to="." method="_on_Credits_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer2/Credits" to="." method="_on_Credits_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/MarginContainer3" to="." method="_on_MarginContainer3_mouse_entered"]
+[connection signal="mouse_entered" from="VBoxContainer/MarginContainer3/Exit" to="." method="_on_Exit_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer3/Exit" to="." method="_on_Exit_pressed"]
