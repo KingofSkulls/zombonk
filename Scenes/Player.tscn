@@ -81,7 +81,5 @@ camera_path = NodePath("../../../Camera")
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.697093 )
 shape = SubResource( 2 )
 
-[connection signal="finished" from="footstepPlayer" to="." method="_on_footstepPlayer_finished"]
-[connection signal="finished" from="footstepPlayer2" to="." method="_on_footstepPlayer2_finished"]
 [connection signal="timeout" from="WalkTimer" to="." method="_on_WalkTimer_timeout"]
 [connection signal="timeout" from="RunTimer" to="." method="_on_RunTimer_timeout"]
