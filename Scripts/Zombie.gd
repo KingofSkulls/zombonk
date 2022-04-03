@@ -11,6 +11,7 @@ var attackfinished = true
 var lastStepSound = 9
 var lastFoot=0
 var bonked := false
+var chasetimer:=1.0
 var finishedspawning := false
 var cur_target = Vector3(0,0.5,0)
 var walk_animation = "Walk In Place Retarget"
@@ -27,6 +28,12 @@ func _ready():
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("SuperSecretFunnyRun"):
 		walk_animation = "FunnyRunny Retarget"
+	if state == "chase":
+		chasetimer-=delta
+		if chasetimer <=0.0:
+			chasetimer = 1.0
+			get_target_path(player.global_transform.origin)
+			print("did it")
 
 func _physics_process(delta):
 	print(state)
@@ -42,7 +49,7 @@ func _physics_process(delta):
 			var pv = player.global_transform.origin
 			var zv = global_transform.origin
 			var angle = atan2((pv.z - zv.z), (pv.x - zv.x))
-
+			
 			look_at(path[0], Vector3.UP)
 			previous_pos = zv
 	
@@ -66,7 +73,7 @@ func move_to():
 
 func get_target_path(target_pos):
 	cur_target = target_pos
-	path = nav.get_simple_path(global_transform.origin, target_pos)
+	path = nav.get_simple_path(global_transform.origin, Vector3(target_pos.x,0.5,target_pos.z))
 
 func _on_Timer_timeout():
 	#spawning
