@@ -91,15 +91,18 @@ func _on_AttackTimer_timeout():
 			attackfinished = false
 			#run attack anim
 			get_node("zombie_test_animations/AnimationPlayer").play("Attack Retarget")
+			
 func _on_PlayerDetect_body_entered(body):
 	if body.name == "Player":
 		get_target_path(player.global_transform.origin)
 	state = "chase"
+	
 func _on_PlayerDetect_body_exited(body):
 	if body.name == "Player":
 		var vec = player.global_transform.origin
 		get_target_path(vec)
 	state = "track"
+	
 func play_footstep():
 	var randFootstep = floor(rand_range(0,5))
 	var footstepPlayer = get_node("footstepPlayer1")
@@ -155,3 +158,11 @@ func _on_Brains_timeout():
 	footstepPlayer.stream.set_loop(false)
 	footstepPlayer.play()
 	print("brains")
+
+func bonk() -> void:
+	print("BONK")
+
+
+func _on_CollisionArea_area_entered(area: Area):
+	if area.is_in_group("bonk"):
+		bonk()

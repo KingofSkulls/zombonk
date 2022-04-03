@@ -16,30 +16,41 @@ var runWalktimerStarted := false
 var can_jump := 0.0
 
 var vel := Vector3()
-var health = 100
+var health := 100
 var mouseDelta := Vector2()
-var stopped = true
+var stopped := true
 var sprint_time := 4.0
 var base_sprint_time := 4.0
 
 var base_fov := 70
 var sprint_fov := 80
 var lastStepSound = 9
-var lastFoot=0
+var lastFoot := 0
 var last_sprint := 0
 var sprint := 0
-var timealive := 0
-func _input(event):         
+var timealive := 0.0
+
+var arm_attack_cd := -0.1
+var despawn_hitbox_cd := -1
+
+var hitbox = null
+
+func _input(event) -> void:         
 	if event is InputEventMouseMotion:
 		mouseDelta = event.relative
 	if event is InputEventKey:
 		if (event as InputEventKey).scancode == KEY_ESCAPE:
 			get_tree().quit() 
 
-func _ready():
+func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-func _process(delta):
+func remove_weapon_hitboxes():
+	for c in get_children():
+		if c.name.count("bonk") > 0: 
+			c.queue_free()
+
+func _process(delta) -> void:
 	reducespot(delta)
 	timealive+=delta
 	camera.rotation_degrees.x -= mouseDelta.y * lookSensitivity * delta
@@ -73,18 +84,43 @@ func _process(delta):
 	
 	last_sprint = sprint
 	
-	
+	if despawn_hitbox_cd > 0:
+		despawn_hitbox_cd -= 1
+		if despawn_hitbox_cd <= 0:
+			remove_weapon_hitboxes()
 	
 	if is_on_floor():
 		can_jump = 0.1
 	else:
 		can_jump = max(0, can_jump - delta)
-		
-	if Input.is_action_pressed("attack"):
-		get_node("Camera/arm/AnimationPlayer").play("BonrAction") # name was an accident too late 
-																	#to change it. don't @ me
 	
-func _physics_process(delta):
+	if arm_attack_cd > 0:
+		arm_attack_cd -= delta
+		
+		if arm_attack_cd <= 0:
+			var area := Area.new()
+			var collision_shape := CollisionShape.new()
+			collision_shape.shape = BoxShape.new()
+			
+			collision_shape.shape.extents = Vector3(0.5, 0.5, 0.5)
+			area.translation.z = -0.5
+			
+			area.name = "bonk"
+			area.add_to_group("bonk")
+			
+			add_child(area)
+			area.add_child(collision_shape)
+			
+			despawn_hitbox_cd = 2
+			
+	if Input.is_action_pressed("attack"):
+		$Camera/arm/AnimationPlayer.play("BonrAction") # name was an accident too late 
+														#to change it. don't @ me
+		arm_attack_cd = 0.5
+		
+func _physics_process(delta) -> void:
+	
+	
 	# reset the x and z velocity
 	vel.x = 0
 	vel.z = 0
@@ -142,24 +178,24 @@ func _physics_process(delta):
 		stopped = true
 		
 		
-func reducespot(delta):
+func reducespot(delta) -> void:
 	var target_node = get_node("Camera/Flashlight")
 	var energy = target_node.get_param(target_node.PARAM_ENERGY)
 	var angle = target_node.get_param(target_node.PARAM_SPOT_ANGLE)
-	energy -=delta*0.05
+	energy -= delta * 0.05
 	if energy <=0:
 		energy =0
 	target_node.set_param(target_node.PARAM_ENERGY, energy)
 	target_node.set_param(target_node.PARAM_SPOT_ANGLE, angle-delta*.15)
 
 
-func _on_batteryCollected():
+func _on_batteryCollected() -> void:
 	var target_node = get_node("Camera/Flashlight")
 	target_node.set_param(target_node.PARAM_ENERGY, 2.2)
 	target_node.set_param(target_node.PARAM_SPOT_ANGLE, 19)
 	
 
-func play_footstep():
+func play_footstep() -> void:
 	var randFootstep = floor(rand_range(0,5))
 	var footstepPlayer = get_node("footstepPlayer")
 	while randFootstep == lastStepSound:
@@ -180,7 +216,7 @@ func play_footstep():
 	lastStepSound = randFootstep
 	lastFoot =0
 
-func play_footstep2():
+func play_footstep2() -> void:
 	var randFootstep = floor(rand_range(0,5))
 	var footstepPlayer = get_node("footstepPlayer2")
 	while randFootstep == lastStepSound:
@@ -203,7 +239,7 @@ func play_footstep2():
 	
 
 
-func _on_RunTimer_timeout():
+func _on_RunTimer_timeout() -> void:
 	runWalktimerStarted=false
 	if vel.x !=0:
 		if Input.is_action_pressed("sprint"):
@@ -214,7 +250,7 @@ func _on_RunTimer_timeout():
 		else:
 			pass
 
-func _on_WalkTimer_timeout():
+func _on_WalkTimer_timeout() -> void:
 	runWalktimerStarted=false
 	if vel.x !=0:
 		if Input.is_action_pressed("sprint"):
@@ -226,10 +262,10 @@ func _on_WalkTimer_timeout():
 				play_footstep()
 
 
-func _on_Zombie_playerDamaged():
-	health-=33
-	if health <=0:
+func _on_Zombie_playerDamaged() -> void:
+	health -= 33
+	if health <= 0:
 		death()
 
-func death():
+func death() -> void:
 	print("You Died")

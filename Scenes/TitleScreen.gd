@@ -16,14 +16,12 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	title_slide_in(delta)
-	
 
 func _on_Start_pressed() -> void:
 	get_tree().change_scene("res://Scenes/Main.tscn")
 
 func _on_Credits_pressed() -> void:
 	get_tree().change_scene("res://Scenes/Credit.tscn")
-
 
 func _on_Exit_pressed() -> void:
 	get_tree().quit()
@@ -45,9 +43,6 @@ func _on_Exit_mouse_entered() -> void:
 	$HandTween.interpolate_property($Hand, "rect_position", 
 		Vector2($Hand.rect_position.x, $Hand.rect_position.y), Vector2($Hand.rect_position.x, 494), 0.1)
 	$HandTween.start()
-
-
-
 
 func title_slide_in(delta: float) ->void:
 	var  slideSpeed: float = 400.0
