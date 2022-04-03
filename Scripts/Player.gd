@@ -21,10 +21,11 @@ var mouseDelta := Vector2()
 var stopped = true
 var sprint_time := 4.0
 var base_sprint_time := 4.0
-var lastFoot=0
+
 var base_fov := 70
 var sprint_fov := 80
 var lastStepSound = 9
+var lastFoot=0
 var last_sprint := 0
 var sprint := 0
 var timealive := 0

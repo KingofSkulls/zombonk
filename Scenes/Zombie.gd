@@ -8,6 +8,8 @@ var previous_pos = Vector3(0,0,0)
 var player_in_range = false
 var state = "spawn"
 var attackfinished = true
+var lastStepSound = 9
+var lastFoot=0
 var cur_target = Vector3(0,0.5,0)
 var walk_animation = "Walk In Place Retarget"
 onready var nav = get_parent()
@@ -97,3 +99,44 @@ func _on_PlayerDetect_body_exited(body):
 		var vec = player.global_transform.origin
 		get_target_path(vec)
 	state = "track"
+func play_footstep():
+	var randFootstep = floor(rand_range(0,5))
+	var footstepPlayer = get_node("footstepPlayer")
+	while randFootstep == lastStepSound:
+		randFootstep = floor(rand_range(0,5))
+	match str(randFootstep):
+		"0":
+			footstepPlayer.stream = preload("res://Assets//Audio//footstep1.mp3")
+		"1":
+			footstepPlayer.stream = preload("res://Assets//Audio//footstep2.mp3")
+		"2":
+			footstepPlayer.stream = preload("res://Assets//Audio//footstep3.mp3")
+		"3":
+			footstepPlayer.stream = preload("res://Assets//Audio//footstep4.mp3")
+		"4":
+			footstepPlayer.stream = preload("res://Assets//Audio//footstep5.mp3")
+	footstepPlayer.stream.set_loop(false)
+	footstepPlayer.play()
+	lastStepSound = randFootstep
+	lastFoot =0
+
+func play_footstep2():
+	var randFootstep = floor(rand_range(0,5))
+	var footstepPlayer = get_node("footstepPlayer2")
+	while randFootstep == lastStepSound:
+		randFootstep = floor(rand_range(0,5))
+	match str(randFootstep):
+		"0":
+			footstepPlayer.stream = preload("res://Assets//Audio//footstep1.mp3")
+		"1":
+			footstepPlayer.stream = preload("res://Assets//Audio//footstep2.mp3")
+		"2":
+			footstepPlayer.stream = preload("res://Assets//Audio//footstep3.mp3")
+		"3":
+			footstepPlayer.stream = preload("res://Assets//Audio//footstep4.mp3")
+		"4":
+			footstepPlayer.stream = preload("res://Assets//Audio//footstep5.mp3")
+	footstepPlayer.stream.set_loop(false)
+	footstepPlayer.play()
+	lastStepSound = randFootstep
+	lastFoot =1

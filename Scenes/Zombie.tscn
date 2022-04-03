@@ -2689,6 +2689,12 @@ shape = SubResource( 18 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02498, 0 )
 shape = SubResource( 19 )
 
+[node name="footstepPlayer1" type="AudioStreamPlayer3D" parent="."]
+transform = Transform( 1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0.301286, 0, 0 )
+
+[node name="footstepPlayer2" type="AudioStreamPlayer3D" parent="."]
+transform = Transform( 1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -0.219325, 0, 0 )
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="body_entered" from="Attack" to="." method="_on_Attack_body_entered"]
 [connection signal="body_exited" from="Attack" to="." method="_on_Attack_body_exited"]
