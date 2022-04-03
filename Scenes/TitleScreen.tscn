@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Scenes/TitleScreen.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://Assets/GUI/Title/background.png" type="Texture" id=2]
 [ext_resource path="res://Assets/GUI/Fonts/oldLondon.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Assets/GUI/Title/TitleScreenTheme.tres" type="Theme" id=4]
