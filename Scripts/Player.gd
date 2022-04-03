@@ -72,10 +72,16 @@ func _process(delta):
 	
 	last_sprint = sprint
 	
+	
+	
 	if is_on_floor():
 		can_jump = 0.1
 	else:
 		can_jump = max(0, can_jump - delta)
+		
+	if Input.is_action_pressed("attack"):
+		get_node("Camera/arm/AnimationPlayer").play("BonrAction") # name was an accident too late 
+																	#to change it. don't @ me
 	
 func _physics_process(delta):
 	# reset the x and z velocity

@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Audio/footstep1.mp3" type="AudioStream" id=2]
 [ext_resource path="res://Assets/Audio/footstep2.mp3" type="AudioStream" id=3]
+[ext_resource path="res://Scenes/arm.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/ArmCamera.gd" type="Script" id=5]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -16,7 +18,17 @@ script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.299663, 0 )
+cull_mask = 1048573
 current = true
+
+[node name="arm" parent="Camera" instance=ExtResource( 4 )]
+transform = Transform( -8.69857e-09, 0, -0.199, 0, 0.199, 0, 0.199, 0, -8.69857e-09, 0.582, -0.337, -1.475 )
+
+[node name="armLight" type="OmniLight" parent="Camera/arm"]
+transform = Transform( -2.19655e-07, 0, 5.02513, 0, 5.02513, 0, -5.02513, 0, -2.19655e-07, 1.2219, 1.69347, 1.63718 )
+layers = 2
+light_energy = 0.56
+light_cull_mask = 4294966274
 
 [node name="Flashlight" type="SpotLight" parent="Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125515, -0.25724, -0.0228176 )
@@ -47,6 +59,21 @@ one_shot = true
 [node name="RunTimer" type="Timer" parent="."]
 wait_time = 0.053
 one_shot = true
+
+[node name="armViewportContainer" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Viewport" type="Viewport" parent="armViewportContainer"]
+size = Vector2( 1024, 600 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Camera" type="Camera" parent="armViewportContainer/Viewport"]
+cull_mask = 2
+script = ExtResource( 5 )
+camera_path = NodePath("../../../Camera")
 
 [node name="Area" type="Area" parent="."]
 
