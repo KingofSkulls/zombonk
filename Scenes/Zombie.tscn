@@ -2882,7 +2882,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.653068, 0 )
 shape = SubResource( 5 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 60.0
+wait_time = 1.668
+one_shot = true
 autostart = true
 
 [node name="zombieAnimations" type="Spatial" parent="."]

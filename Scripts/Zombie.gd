@@ -28,6 +28,7 @@ func _process(delta: float) -> void:
 		walk_animation = "FunnyRunny Retarget"
 
 func _physics_process(delta):
+	print(state)
 	if !bonked and finishedspawning:
 		if path.size() > 0:
 			if abs(cur_target.x - global_transform.origin.x) <= 1 or abs(cur_target.z - global_transform.origin.z) <= 1 and state != "attack":
@@ -68,14 +69,16 @@ func _on_Timer_timeout():
 	#spawning
 	if state=="spawn":
 		state = "wander"
+	elif state=="chase" or state=="track":
+		get_target_path(player.global_transform.origin)
 	path_node = 0
 	finishedspawning = true
 	$Zombiecollisionshape.disabled = false
 
 func _on_Attack_body_entered(body):
 	#check if body is player
-	state ="attack"
 	if body.name == "Player":
+		state ="attack"
 		#set bool true
 		player_in_range = true
 		#run timer
@@ -173,9 +176,10 @@ func _on_Brains_timeout():
 func bonk() -> void:
 	if !finishedspawning:
 		queue_free()
-	$BonkedTimer.start(1)
+	$BonkedTimer.start(3)
 	bonked = true
 	get_node("zombieAnimations/AnimationPlayer").play("Idle Retarget")
+	#$Zombiecollisionshape.disabled = true
 
 
 func _on_CollisionArea_area_entered(area: Area):
@@ -185,3 +189,4 @@ func _on_CollisionArea_area_entered(area: Area):
 
 func _on_BonkedTimer_timeout():
 	bonked=false
+	#$Zombiecollisionshape.disabled = false
