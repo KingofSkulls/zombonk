@@ -95,7 +95,7 @@ func _on_Attack_body_entered(body):
 		#set bool true
 		player_in_range = true
 		#run timer
-		get_node("AttackTimer").start(.45)
+		get_node("AttackTimer").start(1.45)
 		#run attack anim
 		get_node("zombieAnimations/AnimationPlayer").play("Attack Retarget")
 		attackfinished=false
@@ -113,7 +113,7 @@ func _on_AttackTimer_timeout():
 	if player_in_range == true:
 			#emit signal, deal damage
 			if finishedspawning and !bonked:
-				get_node("AttackTimer").start(.45)
+				get_node("AttackTimer").start(1.45)
 				player._on_Zombie_playerDamaged()
 				attackfinished = false
 				#run attack anim
