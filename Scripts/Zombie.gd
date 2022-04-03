@@ -33,13 +33,11 @@ func _process(delta: float) -> void:
 		if chasetimer <=0.0:
 			chasetimer = 1.0
 			get_target_path(player.global_transform.origin)
-			print("did it")
 
 func _physics_process(delta):
-	print(state)
 	if !bonked and finishedspawning:
 		if path.size() > 0:
-			if abs(cur_target.x - global_transform.origin.x) <= 1 or abs(cur_target.z - global_transform.origin.z) <= 1 and state != "attack":
+			if (abs(cur_target.x - global_transform.origin.x) <= 1 or abs(cur_target.z - global_transform.origin.z) <= 1) and state != "attack":
 				move_to()
 			#if state == "chase":
 				#get_target_path(player.global_transform.origin)
@@ -186,7 +184,6 @@ func _on_Brains_timeout():
 	footstepPlayer.stream = preload("res://Assets/Audio/brains.mp3")
 	footstepPlayer.stream.set_loop(false)
 	footstepPlayer.play()
-	print("brains")
 
 func bonk() -> void:
 	if !finishedspawning:
