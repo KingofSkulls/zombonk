@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/Models/MazeMeshes.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Assets/Materials/satara_night_4k.exr" type="Texture" id=5]
 [ext_resource path="res://Scenes/battery.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/Audio/bg.mp3" type="AudioStream" id=7]
+[ext_resource path="res://Scenes/Zombie.tscn" type="PackedScene" id=8]
 
 [sub_resource type="TileSet" id=1]
 0/name = "black.png 0"
@@ -103,5 +104,7 @@ __meta__ = {
 "_editor_clip_": 0,
 "_editor_floor_": Vector3( 0, 1, 0 )
 }
+
+[node name="Zombie" parent="Navigation" instance=ExtResource( 8 )]
 
 [connection signal="batteryCollected" from="Battery" to="Player" method="_on_batteryCollected"]
