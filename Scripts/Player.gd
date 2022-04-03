@@ -9,7 +9,7 @@ const minLookAngle := -90.0
 const maxLookAngle := 90.0
 
 onready var camera : Camera = get_node("Camera")
-
+var bodies = []
 var mouse_sens := 1.0
 var camera_anglev := 0.0
 var runWalktimerStarted := false

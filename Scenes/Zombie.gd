@@ -29,6 +29,7 @@ func _physics_process(delta):
 		move_to()
 		if (state == "wander" or state == "chase" or state =="track") and attackfinished:
 			get_node("zombie_test_animations/AnimationPlayer").play(walk_animation)
+			get_node("Brains").start(floor(rand_range(1,5)))
 		var pv = player.global_transform.origin
 		var zv = global_transform.origin
 		var angle = atan2((pv.z - zv.z), (pv.x - zv.x))
@@ -101,7 +102,7 @@ func _on_PlayerDetect_body_exited(body):
 	state = "track"
 func play_footstep():
 	var randFootstep = floor(rand_range(0,5))
-	var footstepPlayer = get_node("footstepPlayer")
+	var footstepPlayer = get_node("footstepPlayer1")
 	while randFootstep == lastStepSound:
 		randFootstep = floor(rand_range(0,5))
 	match str(randFootstep):
@@ -140,3 +141,17 @@ func play_footstep2():
 	footstepPlayer.play()
 	lastStepSound = randFootstep
 	lastFoot =1
+	
+func play_attacksound():
+	var footstepPlayer = get_node("Attack2")
+	footstepPlayer.stream = preload("res://Assets/Audio/attack.mp3")
+	footstepPlayer.stream.set_loop(false)
+	footstepPlayer.play()
+
+
+func _on_Brains_timeout():
+	var footstepPlayer = get_node("Brains2")
+	footstepPlayer.stream = preload("res://Assets/Audio/brains.mp3")
+	footstepPlayer.stream.set_loop(false)
+	footstepPlayer.play()
+	print("brains")
