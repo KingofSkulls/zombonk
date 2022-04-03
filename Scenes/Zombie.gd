@@ -24,7 +24,6 @@ func _physics_process(delta):
 
 		look_at(path[0], Vector3.UP)
 		previous_pos = zv
-	
 
 func move_to():
 	if path_node >= path.size():
@@ -41,23 +40,25 @@ func get_target_path(target_pos):
 
 func _on_Timer_timeout():
 	get_target_path(player.global_transform.origin)
-	#get_node("AnimationPlayer").play("Walk In Place Retarget")
 	path_node = 0
-	
-
 
 func _on_Attack_body_entered(body):
 	#check if body is player
 	if body.name == "Player":
 		#set bool true
+		player_in_range = true
 		#run timer
-		get_node("RunTimer").start(.5)
+		get_node("AttackTimer").start(.5)
 		#run attack anim
-		#when timer runs out, check if bool still true
-		#emit signal, deal damage
-		emit_signal("playerDamaged")
-
+		get_node("zombie_test_animations/AnimationPlayer").play("Attack Retarget")
 
 func _on_Attack_body_exited(body):
-	pass # Replace with function body.
 	#check if thing exited is player, set bool to false
+	if body.name == "Player":
+		player_in_range = false
+
+func _on_AttackTimer_timeout():
+	#when timer runs out, check if bool still true
+	if player_in_range == true:
+			#emit signal, deal damage
+			emit_signal("playerDamaged")

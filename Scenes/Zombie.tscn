@@ -2675,7 +2675,7 @@ autostart = true
 [node name="Attack" type="Area" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="Attack"]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.705097, 0.54944 )
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.705097, 0.549146 )
 shape = SubResource( 18 )
 
 [node name="AttackTimer" type="Timer" parent="."]
@@ -2683,3 +2683,4 @@ shape = SubResource( 18 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="body_entered" from="Attack" to="." method="_on_Attack_body_entered"]
 [connection signal="body_exited" from="Attack" to="." method="_on_Attack_body_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]
