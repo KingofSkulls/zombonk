@@ -106,5 +106,6 @@ __meta__ = {
 }
 
 [node name="Zombie" parent="Navigation" instance=ExtResource( 8 )]
+transform = Transform( -0.8, 0, 0, 0, 0.8, 0, 0, 0, -0.8, -0.7654, 0.5, 0 )
 
 [connection signal="batteryCollected" from="Battery" to="Player" method="_on_batteryCollected"]

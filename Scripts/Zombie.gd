@@ -10,6 +10,8 @@ var state = "spawn"
 var attackfinished = true
 var lastStepSound = 9
 var lastFoot=0
+var bonked := false
+var finishedspawning := false
 var cur_target = Vector3(0,0.5,0)
 var walk_animation = "Walk In Place Retarget"
 onready var nav = get_parent()
@@ -18,32 +20,34 @@ onready var anim = $AnimationPlayer
 signal playerDamaged
 
 func _ready():
-	pass
+	get_node("zombieAnimations/AnimationPlayer").play("Spawn")
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("SuperSecretFunnyRun"):
 		walk_animation = "FunnyRunny Retarget"
 
 func _physics_process(delta):
-	if path.size() > 0:
-		move_to()
-		if (state == "wander" or state == "chase" or state =="track") and attackfinished:
-			get_node("zombieAnimations/AnimationPlayer").play(walk_animation)
-			get_node("Brains").start(floor(rand_range(1,5)))
-		var pv = player.global_transform.origin
-		var zv = global_transform.origin
-		var angle = atan2((pv.z - zv.z), (pv.x - zv.x))
+	if !bonked and finishedspawning:
+		if path.size() > 0:
+			if abs(cur_target.x - global_transform.origin.x) <= 1 or abs(cur_target.z - global_transform.origin.z) <= 1:
+				move_to()
+			if (state == "wander" or state == "chase" or state =="track") and attackfinished:
+				get_node("zombieAnimations/AnimationPlayer").play(walk_animation)
+				get_node("Brains").start(floor(rand_range(1,5)))
+			var pv = player.global_transform.origin
+			var zv = global_transform.origin
+			var angle = atan2((pv.z - zv.z), (pv.x - zv.x))
 
-		look_at(path[0], Vector3.UP)
-		previous_pos = zv
+			look_at(path[0], Vector3.UP)
+			previous_pos = zv
 	
 	
-	if state == "wander" or state == "track":
-		if abs(cur_target.x - global_transform.origin.x) <= 1 or abs(cur_target.z - global_transform.origin.z) <= 1:
-			state="wander"
-			var radius = 30
-			var vec = Vector3(rand_range(-radius, radius), 0.5, rand_range(-radius, radius))
-			get_target_path(vec)
+		if state == "wander" or state == "track":
+			if abs(cur_target.x - global_transform.origin.x) <= 1 or abs(cur_target.z - global_transform.origin.z) <= 1:
+				state="wander"
+				var radius = 30
+				var vec = Vector3(rand_range(-radius, radius), 0.5, rand_range(-radius, radius))
+				get_target_path(vec)
 
 func move_to():
 	if path_node >= path.size():
@@ -60,8 +64,10 @@ func get_target_path(target_pos):
 	path = nav.get_simple_path(global_transform.origin, target_pos)
 
 func _on_Timer_timeout():
-	get_target_path(player.global_transform.origin)
+	if state=="spawn":
+		state = "wander"
 	path_node = 0
+	finishedspawning = true
 
 func _on_Attack_body_entered(body):
 	#check if body is player
@@ -72,8 +78,9 @@ func _on_Attack_body_entered(body):
 		#run timer
 		get_node("AttackTimer").start(.45)
 		#run attack anim
-		get_node("zombieAnimations/AnimationPlayer").play("Attack Retarget")
-		attackfinished=false
+		if finishedspawning and !bonked:
+			get_node("zombieAnimations/AnimationPlayer").play("Attack Retarget")
+			attackfinished=false
 
 func _on_Attack_body_exited(body):
 	#check if thing exited is player, set bool to false
@@ -86,11 +93,12 @@ func _on_AttackTimer_timeout():
 	attackfinished=true
 	if player_in_range == true:
 			#emit signal, deal damage
-			emit_signal("playerDamaged")
 			get_node("AttackTimer").start(.45)
-			attackfinished = false
-			#run attack anim
-			get_node("zombieAnimations/AnimationPlayer").play("Attack Retarget")
+			if finishedspawning and !bonked:
+				emit_signal("playerDamaged")
+				attackfinished = false
+				#run attack anim
+				get_node("zombieAnimations/AnimationPlayer").play("Attack Retarget")
 			
 func _on_PlayerDetect_body_entered(body):
 	if body.name == "Player":
@@ -160,9 +168,17 @@ func _on_Brains_timeout():
 	print("brains")
 
 func bonk() -> void:
-	print("BONK")
+	if !finishedspawning:
+		queue_free()
+	$BonkedTimer.start(1)
+	bonked = true
+	get_node("zombieAnimations/AnimationPlayer").play("Idle Retarget")
 
 
 func _on_CollisionArea_area_entered(area: Area):
 	if area.is_in_group("bonk"):
 		bonk()
+
+
+func _on_BonkedTimer_timeout():
+	bonked=false

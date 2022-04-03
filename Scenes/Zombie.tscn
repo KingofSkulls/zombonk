@@ -2882,7 +2882,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.653068, 0 )
 shape = SubResource( 5 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 60.0
 autostart = true
 
 [node name="zombieAnimations" type="Spatial" parent="."]
@@ -3147,6 +3147,8 @@ one_shot = true
 [node name="Brains2" type="AudioStreamPlayer3D" parent="."]
 transform = Transform( 1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -0.0778392, 1.3111, 0 )
 
+[node name="BonkedTimer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="CollisionArea" to="." method="_on_CollisionArea_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="body_entered" from="Attack" to="." method="_on_Attack_body_entered"]
@@ -3155,3 +3157,4 @@ transform = Transform( 1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -0.0778392, 1.3111, 0
 [connection signal="body_entered" from="PlayerDetect" to="." method="_on_PlayerDetect_body_entered"]
 [connection signal="body_exited" from="PlayerDetect" to="." method="_on_PlayerDetect_body_exited"]
 [connection signal="timeout" from="Brains" to="." method="_on_Brains_timeout"]
+[connection signal="timeout" from="BonkedTimer" to="." method="_on_BonkedTimer_timeout"]
