@@ -14,7 +14,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	title_slide_in(delta)
-
+	
 
 func _on_Start_pressed() -> void:
 	get_tree().change_scene("res://Scenes/Main.tscn")
