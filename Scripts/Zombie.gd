@@ -50,6 +50,8 @@ func _physics_process(delta):
 			var zv = global_transform.origin
 			var angle = atan2((pv.z - zv.z), (pv.x - zv.x))
 			
+			if translation.distance_to(path[0]) < 0.1:
+				path.remove(0)
 			look_at(path[0], Vector3.UP)
 			previous_pos = zv
 	
