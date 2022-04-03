@@ -51,12 +51,6 @@ func _on_Attack_body_entered(body):
 		get_node("AttackTimer").start(.5)
 		#run attack anim
 		get_node("zombie_test_animations/AnimationPlayer").play("Attack Retarget")
-		#when timer runs out, check if bool still true
-		if get_node("AttackTimer").is_stopped and player_in_range == true:
-			#emit signal, deal damage
-			emit_signal("playerDamaged")
-		else:
-			player_in_range = false
 
 func _on_Attack_body_exited(body):
 	#check if thing exited is player, set bool to false
@@ -64,4 +58,7 @@ func _on_Attack_body_exited(body):
 		player_in_range = false
 
 func _on_AttackTimer_timeout():
-	pass # Replace with function body.
+	#when timer runs out, check if bool still true
+	if player_in_range == true:
+			#emit signal, deal damage
+			emit_signal("playerDamaged")
