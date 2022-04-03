@@ -1,16 +1,28 @@
 extends Spatial
 
+export var ZombieCDMin := 70.0
+export var ZombieCDMax := 180.0
+var ZombieCooldown: float
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+onready var Zombie = load("res://Scenes/Zombie.tscn")
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func _ready() -> void:
+	new_cd()
+	
+func new_cd() -> void:
+	ZombieCooldown = randi() % int(ZombieCDMax - ZombieCDMin) + ZombieCDMin
 
+func spawn_zombie() -> void:
+	var tmp_zombie = Zombie.instance()
+	
+	tmp_zombie.translation = translation + Vector3(0, -0.25, 0)
+	
+	get_parent().add_child(tmp_zombie)
+	
+	new_cd()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta) -> void:
+	ZombieCooldown -= delta
+	if ZombieCooldown <= 0:
+		spawn_zombie()

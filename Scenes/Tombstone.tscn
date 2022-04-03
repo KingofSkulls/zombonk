@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Tombstone.gd" type="Script" id=1]
 
 [sub_resource type="CubeMesh" id=1]
-size = Vector3( 1, 1, 1 )
+size = Vector3( 0.1, 0.1, 0.1 )
 
 [node name="Tombstone" type="Spatial"]
 script = ExtResource( 1 )
