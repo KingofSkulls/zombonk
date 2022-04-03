@@ -2,8 +2,8 @@ extends KinematicBody
 
 var path = []
 var path_node = 0
-var speed = 1
-var threshold = 0.1
+var speed := 0.4
+var threshold = 0.25
 var previous_pos = Vector3(0,0,0)
 var player_in_range = false
 var state = "spawn"
@@ -39,8 +39,8 @@ func _physics_process(delta):
 	print(state)
 	if !bonked and finishedspawning:
 		if path.size() > 0:
-			#if abs(cur_target.x - global_transform.origin.x) <= 1 or abs(cur_target.z - global_transform.origin.z) <= 1 and state != "attack":
-			move_to()
+			if abs(cur_target.x - global_transform.origin.x) <= 1 or abs(cur_target.z - global_transform.origin.z) <= 1 and state != "attack":
+				move_to()
 			#if state == "chase":
 				#get_target_path(player.global_transform.origin)
 			if (state == "wander" or state == "chase" or state =="track") and attackfinished:
@@ -50,9 +50,9 @@ func _physics_process(delta):
 			var zv = global_transform.origin
 			var angle = atan2((pv.z - zv.z), (pv.x - zv.x))
 			
-			if translation.distance_to(path[0]) < 0.1:
-				path.remove(0)
-			look_at(path[0], Vector3.UP)
+			look_at(player.global_transform.origin, Vector3.UP)
+			rotation_degrees.y += 180
+			# rotation_degrees.y = -rotation_degrees.y
 			previous_pos = zv
 	
 	
@@ -62,6 +62,7 @@ func _physics_process(delta):
 				var radius = 30
 				var vec = Vector3(rand_range(-radius, radius), 0.5, rand_range(-radius, radius))
 				get_target_path(vec)
+	
 
 func move_to():
 	if path_node >= path.size():
@@ -75,6 +76,7 @@ func move_to():
 
 func get_target_path(target_pos):
 	cur_target = target_pos
+	path_node = 0
 	path = nav.get_simple_path(global_transform.origin, Vector3(target_pos.x,0.5,target_pos.z))
 
 func _on_Timer_timeout():
