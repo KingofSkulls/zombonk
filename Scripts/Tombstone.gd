@@ -9,6 +9,7 @@ onready var Zombie = load("res://Scenes/Zombie.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	new_cd()
+	ZombieCooldown -= ZombieCDMin
 	
 func new_cd() -> void:
 	ZombieCooldown = randi() % int(ZombieCDMax - ZombieCDMin) + ZombieCDMin
@@ -16,7 +17,7 @@ func new_cd() -> void:
 func spawn_zombie() -> void:
 	var tmp_zombie = Zombie.instance()
 	
-	tmp_zombie.translation = translation + Vector3(0, -0.25, 0)
+	tmp_zombie.translation = translation
 	
 	get_parent().add_child(tmp_zombie)
 	
