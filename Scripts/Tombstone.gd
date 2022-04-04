@@ -42,28 +42,30 @@ var quotes := [
 	"I'll take a potato chip"
 ]
 
+onready var lag_frame = 10
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	new_cd()
 	ZombieCooldown -= ZombieCDMin
-	
+
 	var gravescript: String = quotes[randi() % len(quotes)]
 	var script_words = gravescript.split(" ")
-	$Quote/Viewport/Label.text = ""
+	$Viewport/Label.text = ""
 	
 	for i in range(len(script_words)):
 		if i % 2 == 0:
 			if i != 0:
-				$Quote/Viewport/Label.text += "\n"
+				$Viewport/Label.text += "\n"
 		else:
-			$Quote/Viewport/Label.text += " "
+			$Viewport/Label.text += " "
 		
-		$Quote/Viewport/Label.text += script_words[i]
+		$Viewport/Label.text += script_words[i]
 	
-	$Quote/Viewport/Label.hide()
-	$Quote/Viewport/Label.show()
+	$Viewport/Label.hide()
+	$Viewport/Label.show()
 	
-	$Quote/Viewport.size = $Quote/Viewport/Label.rect_size
+	$Viewport.size = $Viewport/Label.rect_size
 	
 	rotation_degrees.y = randi() % 360
 	
@@ -80,6 +82,10 @@ func spawn_zombie() -> void:
 	new_cd()
 
 func _process(delta) -> void:
+
+	
 	ZombieCooldown -= delta
 	if ZombieCooldown <= 0:
 		spawn_zombie()
+		
+	
