@@ -222,7 +222,7 @@ func reducespot(delta) -> void:
 func _on_batteryCollected() -> void:
 	var target_node = get_node("Camera/Flashlight")
 	target_node.set_param(target_node.PARAM_ENERGY, 2.2)
-	target_node.set_param(target_node.PARAM_SPOT_ANGLE, 19)
+	target_node.set_param(target_node.PARAM_SPOT_ANGLE, 21.88)
 	batteriescollected+=1
 	
 	
