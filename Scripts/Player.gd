@@ -14,7 +14,7 @@ var mouse_sens := 1.0
 var camera_anglev := 0.0
 var runWalktimerStarted := false
 var can_jump := 0.0
-export var god := true
+export var god := false
 var vel := Vector3()
 var health := 100
 var mouseDelta := Vector2()
@@ -55,6 +55,9 @@ func remove_weapon_hitboxes():
 			c.queue_free()
 
 func _process(delta) -> void:
+	var f = $Camera/Flashlight
+	$"Battery Bar".value = f.get_param(f.PARAM_ENERGY) / 2.2 * 100.0
+	
 	if not dead:
 		timealive+=delta
 	reducespot(delta)
@@ -197,9 +200,9 @@ func reducespot(delta) -> void:
 		target_node.set_param(target_node.PARAM_SPOT_ANGLE, angle-delta*.15)
 		
 		# BATTERY BAR ??
-		$BatteryBar.value = energy/2.2
-		print(energy)
-		print($BatteryBar.value)
+#		$BatteryBar.value = energy / 2.2
+#		print(energy)
+#		print($BatteryBar.value)
 
 
 func _on_batteryCollected() -> void:
