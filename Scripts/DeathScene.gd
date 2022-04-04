@@ -12,6 +12,8 @@ func _ready() -> void:
 
 
 func update_vars(time: float, zomb:float, batt:float) -> void:
+	var score = (time +(50.0*batt) + (25.0*zomb))*50
+	get_node("ColorRect/MarginContainer/VBoxContainer/scoreVar").text = String(int(score))
 	get_node("ColorRect/MarginContainer/VBoxContainer/timeVar").text = String(int(time))
 	get_node("ColorRect/MarginContainer/VBoxContainer/zomVar").text = String(zomb)
 	get_node("ColorRect/MarginContainer/VBoxContainer/batVar").text = String(batt)

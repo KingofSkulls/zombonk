@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Audio/footstep1.mp3" type="AudioStream" id=2]
@@ -71,6 +71,30 @@ Button/styles/hover = SubResource( 3 )
 Button/styles/normal = SubResource( 4 )
 Button/styles/pressed = SubResource( 5 )
 Label/colors/font_color = Color( 0.133333, 0.145098, 0.129412, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[sub_resource type="StyleBoxEmpty" id=14]
+
+[sub_resource type="Theme" id=15]
+default_font = ExtResource( 9 )
+Button/colors/font_color = Color( 1, 0, 0, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_focus = Color( 0.94, 0.94, 0.94, 1 )
+Button/colors/font_color_hover = Color( 1, 1, 1, 1 )
+Button/colors/font_color_pressed = Color( 0.615686, 0.427451, 0.427451, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = ExtResource( 9 )
+Button/styles/disabled = null
+Button/styles/focus = SubResource( 11 )
+Button/styles/hover = SubResource( 12 )
+Button/styles/normal = SubResource( 13 )
+Button/styles/pressed = SubResource( 14 )
+Label/colors/font_color = Color( 1, 0.866667, 0, 1 )
 
 [node name="Player" type="KinematicBody"]
 pause_mode = 2
@@ -167,7 +191,6 @@ scale = Vector2( 1.024, 0.6 )
 texture = ExtResource( 6 )
 
 [node name="DeathScene" type="Control" parent="."]
-visible = false
 margin_right = 1023.0
 margin_bottom = 601.0
 script = ExtResource( 12 )
@@ -190,71 +213,88 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -159.5
-margin_top = -80.0
-margin_right = 159.5
-margin_bottom = 80.0
+margin_left = -129.0
+margin_top = -119.0
+margin_right = 190.0
+margin_bottom = 87.0
+rect_scale = Vector2( 0.829063, 0.829063 )
 custom_constants/margin_top = -100
 
 [node name="VBoxContainer" type="VBoxContainer" parent="DeathScene/ColorRect/MarginContainer"]
 margin_top = -100.0
 margin_right = 319.0
-margin_bottom = 206.0
+margin_bottom = 298.0
 theme = SubResource( 7 )
 custom_constants/separation = 16
 
-[node name="Time Lab" type="Label" parent="DeathScene/ColorRect/MarginContainer/VBoxContainer"]
+[node name="Score" type="Label" parent="DeathScene/ColorRect/MarginContainer/VBoxContainer"]
 margin_right = 319.0
 margin_bottom = 30.0
+theme = SubResource( 9 )
+custom_constants/line_spacing = 23
+text = "Score"
+align = 1
+
+[node name="scoreVar" type="Label" parent="DeathScene/ColorRect/MarginContainer/VBoxContainer"]
+margin_top = 46.0
+margin_right = 319.0
+margin_bottom = 76.0
+theme = SubResource( 15 )
+align = 1
+
+[node name="Time Lab" type="Label" parent="DeathScene/ColorRect/MarginContainer/VBoxContainer"]
+margin_top = 92.0
+margin_right = 319.0
+margin_bottom = 122.0
 theme = SubResource( 9 )
 custom_constants/line_spacing = 23
 text = "Time Survived"
 align = 1
 
 [node name="timeVar" type="Label" parent="DeathScene/ColorRect/MarginContainer/VBoxContainer"]
-margin_top = 46.0
-margin_right = 319.0
-margin_bottom = 76.0
-theme = ExtResource( 10 )
-align = 1
-
-[node name="Zom Lab" type="Label" parent="DeathScene/ColorRect/MarginContainer/VBoxContainer"]
-margin_top = 92.0
-margin_right = 319.0
-margin_bottom = 122.0
-theme = SubResource( 9 )
-custom_constants/line_spacing = 23
-text = "Zombies Bonked"
-align = 1
-
-[node name="zomVar" type="Label" parent="DeathScene/ColorRect/MarginContainer/VBoxContainer"]
 margin_top = 138.0
 margin_right = 319.0
 margin_bottom = 168.0
 theme = ExtResource( 10 )
 align = 1
 
-[node name="Bat Lab" type="Label" parent="DeathScene/ColorRect/MarginContainer/VBoxContainer"]
+[node name="Zom Lab" type="Label" parent="DeathScene/ColorRect/MarginContainer/VBoxContainer"]
 margin_top = 184.0
 margin_right = 319.0
 margin_bottom = 214.0
+theme = SubResource( 9 )
+custom_constants/line_spacing = 23
+text = "Zombies Bonked"
+align = 1
+
+[node name="zomVar" type="Label" parent="DeathScene/ColorRect/MarginContainer/VBoxContainer"]
+margin_top = 230.0
+margin_right = 319.0
+margin_bottom = 260.0
+theme = ExtResource( 10 )
+align = 1
+
+[node name="Bat Lab" type="Label" parent="DeathScene/ColorRect/MarginContainer/VBoxContainer"]
+margin_top = 276.0
+margin_right = 319.0
+margin_bottom = 306.0
 theme = SubResource( 9 )
 custom_constants/line_spacing = 23
 text = "Batteries Gathered"
 align = 1
 
 [node name="batVar" type="Label" parent="DeathScene/ColorRect/MarginContainer/VBoxContainer"]
-margin_top = 230.0
+margin_top = 322.0
 margin_right = 319.0
-margin_bottom = 260.0
+margin_bottom = 352.0
 theme = ExtResource( 10 )
 custom_constants/line_spacing = 23
 align = 1
 
 [node name="Button" type="Button" parent="DeathScene/ColorRect/MarginContainer/VBoxContainer"]
-margin_top = 276.0
+margin_top = 368.0
 margin_right = 319.0
-margin_bottom = 306.0
+margin_bottom = 398.0
 text = "Main Menu"
 
 [node name="AmbientLight" type="OmniLight" parent="."]
