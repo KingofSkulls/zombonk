@@ -22,6 +22,9 @@ var stopped := true
 var sprint_time := 4.0
 var base_sprint_time := 4.0
 
+var timesurvived:= 0
+var zombiesbonked:= 0
+var batteriescollected := 0
 var base_fov := 70
 var sprint_fov := 80
 var lastStepSound = 9
@@ -51,6 +54,7 @@ func remove_weapon_hitboxes():
 			c.queue_free()
 
 func _process(delta) -> void:
+	timealive+=delta
 	reducespot(delta)
 	timealive+=delta
 	camera.rotation_degrees.x -= mouseDelta.y * lookSensitivity * delta
@@ -200,6 +204,8 @@ func _on_batteryCollected() -> void:
 	var target_node = get_node("Camera/Flashlight")
 	target_node.set_param(target_node.PARAM_ENERGY, 2.2)
 	target_node.set_param(target_node.PARAM_SPOT_ANGLE, 19)
+	batteriescollected+=1
+	
 	
 
 func play_footstep() -> void:
@@ -278,3 +284,7 @@ func _on_Zombie_playerDamaged() -> void:
 
 func death() -> void:
 	print("You Died")
+	
+func zombbonk():
+	zombiesbonked+=1
+
