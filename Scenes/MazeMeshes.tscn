@@ -1,16 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Assets/Materials/Floor.tres" type="Material" id=1]
-[ext_resource path="res://Assets/Sprites/floor.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Materials/brick_wall_001.material" type="Material" id=1]
+[ext_resource path="res://Assets/Materials/forest_leaves_02.material" type="Material" id=2]
 
 [sub_resource type="CubeMesh" id=1]
 
 [sub_resource type="ConcavePolygonShape" id=2]
 data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
-
-[sub_resource type="SpatialMaterial" id=3]
-albedo_texture = ExtResource( 2 )
-uv1_scale = Vector3( 3, 3, 3 )
 
 [node name="Spatial" type="Spatial"]
 
@@ -26,7 +22,7 @@ shape = SubResource( 2 )
 
 [node name="Floor" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
-material/0 = SubResource( 3 )
+material/0 = ExtResource( 2 )
 
 [node name="StaticBody" type="StaticBody" parent="Floor"]
 
