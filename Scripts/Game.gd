@@ -26,12 +26,18 @@ func _ready():
 		var chosen_pos = pos_list[chosen_idx]
 		pos_list.pop_at(chosen_idx)
 		
-		var tmp_batter = Battery.instance()
+		var tmp_battery = Battery.instance()
 		
-		tmp_batter.translation = chosen_pos.translation + Vector3(0, 1.5, 0)
+		tmp_battery.translation = chosen_pos.translation + Vector3(0, 1.5, 0)
 		
-		$Navigation.add_child(tmp_batter)
-
+		$Navigation.add_child(tmp_battery)
+	
+	
+	var chosen_idx := randi() % len(pos_list)
+	var chosen_pos = pos_list[chosen_idx]
+	
+	$Player.translation = chosen_pos.translation + Vector3(0, 1, 0)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
