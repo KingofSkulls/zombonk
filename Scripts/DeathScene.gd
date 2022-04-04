@@ -18,4 +18,5 @@ func update_vars(time: float, zomb:float, batt:float) -> void:
 
 
 func _on_Button_pressed() -> void:
+	get_tree().paused = false
 	get_tree().change_scene("res://Scenes/TitleScreen.tscn")
