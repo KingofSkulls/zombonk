@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 	title_slide_in(delta)
 
 func _on_Start_pressed() -> void:
-	get_tree().change_scene("res://Scenes/Main.tscn")
+	get_tree().change_scene("res://Scenes/Loading.tscn")
 	
 func _on_How_To_Play_pressed() -> void:
 	get_tree().change_scene("res://Scenes/howToPlay.tscn")
