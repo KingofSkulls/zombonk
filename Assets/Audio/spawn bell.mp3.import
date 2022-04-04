@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/spawn bell.mp3-cf3f305ea1c58b660439ee0344078256.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/spawn bell.mp3"
+dest_files=[ "res://.import/spawn bell.mp3-cf3f305ea1c58b660439ee0344078256.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
