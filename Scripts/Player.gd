@@ -140,6 +140,14 @@ func _process(delta) -> void:
 				$Camera/arm/AnimationPlayer.play("BonrAction") # name was an accident too late 
 																#to change it. don't @ me
 				arm_attack_cd = 0.5
+			else:
+				if not $NoStaminaTween.is_active():
+					$NoStaminaTween.playback_speed = 2.0
+					$NoStaminaTween.remove_all()
+					$NoStaminaTween.interpolate_property($"Stamina Bar", "rect_position", 
+						$"Stamina Bar".rect_position - Vector2(8, 0), $"Stamina Bar".rect_position, 0.5,
+						Tween.TRANS_SINE, Tween.EASE_OUT)
+					$NoStaminaTween.start()
 	
 	
 func _physics_process(delta) -> void:

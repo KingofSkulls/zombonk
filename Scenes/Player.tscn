@@ -306,6 +306,8 @@ light_energy = 0.034
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.270269, -1.47477 )
 stream = ExtResource( 13 )
 
+[node name="NoStaminaTween" type="Tween" parent="."]
+
 [connection signal="timeout" from="WalkTimer" to="." method="_on_WalkTimer_timeout"]
 [connection signal="timeout" from="RunTimer" to="." method="_on_RunTimer_timeout"]
 [connection signal="pressed" from="DeathScene/ColorRect/MarginContainer/VBoxContainer/Button" to="DeathScene" method="_on_Button_pressed"]
