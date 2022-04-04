@@ -26,7 +26,7 @@ var timesurvived:= 0
 var zombiesbonked:= 0
 var batteriescollected := 0
 var base_fov := 70
-var sprint_fov := 80
+var sprint_fov := 78
 var lastStepSound = 9
 var lastFoot := 0
 var last_sprint := 0
@@ -55,12 +55,20 @@ func remove_weapon_hitboxes():
 			c.queue_free()
 
 func _process(delta) -> void:
-	health+=.4
+	health+=.4*delta
 	if health > 100.0:
 		health = 100.0
+	$DamageVignette.self_modulate.a = (100 - health) / 200
+	
 	var f = $Camera/Flashlight
 	$"Battery Bar".value = f.get_param(f.PARAM_ENERGY) / 2.2 * 100.0
 	
+	$"Stamina Bar".value = sprint_time / base_sprint_time * 100.0
+	if sprint_time == base_sprint_time:
+		$"Stamina Bar".hide()
+	else:
+		$"Stamina Bar".show()
+		
 	if not dead:
 		timealive+=delta
 	reducespot(delta)
@@ -85,13 +93,13 @@ func _process(delta) -> void:
 
 	if last_sprint == 0 and sprint == 1:
 		$FOVTween.remove_all()
-		$FOVTween.interpolate_property($Camera, "fov", $Camera.fov, sprint_fov, 0.2)
+		$FOVTween.interpolate_property($Camera, "fov", $Camera.fov, sprint_fov, 0.15)
 		$FOVTween.start()
 		#stopped=true
 		
 	if last_sprint == 1 and sprint == 0:
 		$FOVTween.remove_all()
-		$FOVTween.interpolate_property($Camera, "fov", $Camera.fov, base_fov, 0.2)
+		$FOVTween.interpolate_property($Camera, "fov", $Camera.fov, base_fov, 0.15)
 		$FOVTween.start()
 	
 	last_sprint = sprint
@@ -125,12 +133,13 @@ func _process(delta) -> void:
 			
 			despawn_hitbox_cd = 2
 			
-	if Input.is_action_pressed("attack"):
-		if sprint_time > 2.0:
-			sprint_time-=2.0
-			$Camera/arm/AnimationPlayer.play("BonrAction") # name was an accident too late 
-															#to change it. don't @ me
-			arm_attack_cd = 0.5
+	if Input.is_action_just_pressed("attack"):
+		if not $Camera/arm/AnimationPlayer.is_playing():
+			if sprint_time > 2.0:
+				sprint_time-=2.0
+				$Camera/arm/AnimationPlayer.play("BonrAction") # name was an accident too late 
+																#to change it. don't @ me
+				arm_attack_cd = 0.5
 	
 	
 func _physics_process(delta) -> void:
@@ -288,7 +297,6 @@ func _on_WalkTimer_timeout() -> void:
 func _on_Zombie_playerDamaged() -> void:
 	health -= 33
 	print(health)
-	$DamageVignette.self_modulate.a = (100 - health) / 100
 	if health <= 0:
 		death()
 		

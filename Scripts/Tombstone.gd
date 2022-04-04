@@ -35,7 +35,10 @@ var quotes := [
 	"I tried to have a button",
 	"The player eats my mouse",
 	"We lost",
-	"Ghost juice"
+	"Ghost juice",
+	"That's what someone who is saying an excuse would say",
+	"I can't argue because I already left",
+	"You have to play with your heart, not your brain"
 ]
 
 # Called when the node enters the scene tree for the first time.
