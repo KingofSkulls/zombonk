@@ -23,7 +23,20 @@ func _ready() -> void:
 	new_cd()
 	ZombieCooldown -= ZombieCDMin
 	
+	var gravescript: String = quotes[randi() % len(quotes)]
+	var script_words = gravescript.split(" ")
+	var text_on_grave := ""
 	
+	for i in range(len(script_words)):
+		if i % 2 == 0:
+			if i != 0:
+				text_on_grave += "\n"
+		else:
+			text_on_grave += " "
+		
+		text_on_grave += script_words[i]
+	
+	$Quote/Viewport/Label.text = text_on_grave
 	
 	$Quote/Viewport.size = $Quote/Viewport/Label.rect_size
 	print($Quote/Viewport.size)
