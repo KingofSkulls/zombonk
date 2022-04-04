@@ -56,3 +56,7 @@ func title_slide_in(delta: float) ->void:
 
 func _on_How_To_Play_pressed() -> void:
 	get_tree().change_scene("res://Scenes/howToPlay.tscn")
+
+
+func _on_How_To_Play_mouse_exited() -> void:
+	pass # Replace with function body.

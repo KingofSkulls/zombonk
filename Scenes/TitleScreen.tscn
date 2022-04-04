@@ -44,10 +44,11 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -128.0
-margin_top = -301.0
-margin_right = 128.0
-margin_bottom = -94.0
+margin_left = -123.0
+margin_top = -295.0
+margin_right = 133.0
+margin_bottom = -88.0
+rect_scale = Vector2( 0.940361, 0.940361 )
 theme = ExtResource( 4 )
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
@@ -62,23 +63,10 @@ theme = ExtResource( 4 )
 custom_fonts/font = ExtResource( 3 )
 text = "Start Game"
 
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
 margin_top = 34.0
 margin_right = 256.0
 margin_bottom = 89.0
-custom_constants/margin_top = 25
-
-[node name="Credits" type="Button" parent="VBoxContainer/MarginContainer2"]
-margin_top = 25.0
-margin_right = 256.0
-margin_bottom = 55.0
-custom_fonts/font = ExtResource( 3 )
-text = "Credits"
-
-[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 93.0
-margin_right = 256.0
-margin_bottom = 148.0
 custom_constants/margin_top = 25
 
 [node name="How To Play" type="Button" parent="VBoxContainer/MarginContainer3"]
@@ -87,6 +75,19 @@ margin_right = 256.0
 margin_bottom = 55.0
 custom_fonts/font = ExtResource( 3 )
 text = "How to Play"
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 93.0
+margin_right = 256.0
+margin_bottom = 148.0
+custom_constants/margin_top = 25
+
+[node name="Credits" type="Button" parent="VBoxContainer/MarginContainer2"]
+margin_top = 25.0
+margin_right = 256.0
+margin_bottom = 55.0
+custom_fonts/font = ExtResource( 3 )
+text = "Credits"
 
 [node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer"]
 margin_top = 152.0
@@ -163,11 +164,11 @@ autoplay = true
 
 [connection signal="mouse_entered" from="VBoxContainer/MarginContainer/Start" to="." method="_on_Start_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/MarginContainer3" to="." method="_on_MarginContainer3_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/MarginContainer3/How To Play" to="." method="_on_How_To_Play_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer3/How To Play" to="." method="_on_How_To_Play_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/MarginContainer2/Credits" to="." method="_on_Credits_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer2/Credits" to="." method="_on_Credits_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer/MarginContainer3" to="." method="_on_MarginContainer3_mouse_entered"]
-[connection signal="mouse_entered" from="VBoxContainer/MarginContainer3/How To Play" to="." method="_on_Exit_mouse_entered"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer3/How To Play" to="." method="_on_How_To_Play_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/MarginContainer4" to="." method="_on_MarginContainer3_mouse_entered"]
 [connection signal="mouse_entered" from="VBoxContainer/MarginContainer4/Exit" to="." method="_on_Exit_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer4/Exit" to="." method="_on_Exit_pressed"]
