@@ -25,6 +25,7 @@ func _ready():
 	get_node("zombieAnimations/AnimationPlayer").play("Spawn")
 	$Zombiecollisionshape.disabled = true
 	$Attack/CollisionShape.disabled = true
+	$Spawncue.play()
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("SuperSecretFunnyRun"):
@@ -88,6 +89,8 @@ func _on_Timer_timeout():
 	finishedspawning = true
 	$Zombiecollisionshape.disabled = false
 	$Attack/CollisionShape.disabled = false
+	play_attacksound()
+	
 
 func _on_Attack_body_entered(body):
 	#check if body is player
