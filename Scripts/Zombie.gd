@@ -191,7 +191,7 @@ func _on_Brains_timeout():
 
 func bonk() -> void:
 	player.zombbonk()
-	$Hit.play()
+	#$Hit.play()
 	if !finishedspawning:
 		var tmp_batter = Battery.instance()
 		
