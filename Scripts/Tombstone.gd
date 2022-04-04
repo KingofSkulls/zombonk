@@ -15,8 +15,28 @@ var quotes := [
 	"Mantha",
 	"Wick",
 	"Frog",
-	"ShatteredBouquet"
-] 
+	"We should use everything but tombstones",
+	"Ok I will really quick",
+	"It should auto complere",
+	"Needs to be EXCAT",
+	"That's lore!!",
+	"ITS WILL SMITH ZOMBIE",
+	"He is stanced up",
+	"I probably hit every button",
+	"I'm a button pusher",
+	"Love me some sounds",
+	"I'm just a little jester",
+	"He ate 71 pounds of sand and died",
+	"Jokes on you I fact check everything",
+	"I feel British Canadian sometimes",
+	"I like armour",
+	"Baguette = Wand",
+	"J.J. Binks",
+	"I tried to have a button",
+	"The player eats my mouse",
+	"We lost",
+	"Ghost juice"
+]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,21 +45,23 @@ func _ready() -> void:
 	
 	var gravescript: String = quotes[randi() % len(quotes)]
 	var script_words = gravescript.split(" ")
-	var text_on_grave := ""
+	$Quote/Viewport/Label.text = ""
 	
 	for i in range(len(script_words)):
 		if i % 2 == 0:
 			if i != 0:
-				text_on_grave += "\n"
+				$Quote/Viewport/Label.text += "\n"
 		else:
-			text_on_grave += " "
+			$Quote/Viewport/Label.text += " "
 		
-		text_on_grave += script_words[i]
+		$Quote/Viewport/Label.text += script_words[i]
 	
-	$Quote/Viewport/Label.text = text_on_grave
+	$Quote/Viewport/Label.hide()
+	$Quote/Viewport/Label.show()
 	
 	$Quote/Viewport.size = $Quote/Viewport/Label.rect_size
-	print($Quote/Viewport.size)
+	
+	rotation_degrees.y = randi() % 360
 	
 func new_cd() -> void:
 	ZombieCooldown = randi() % int(ZombieCDMax - ZombieCDMin) + ZombieCDMin
