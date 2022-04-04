@@ -291,6 +291,9 @@ func _on_Zombie_playerDamaged() -> void:
 func death() -> void:
 	print("You Died")
 	get_tree().paused = true
+	get_node("")
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	$DeathScene.update_vars(timealive, zombiesbonked, batteriescollected)
 	$DeathScene.show()
 	dead=true
 	
