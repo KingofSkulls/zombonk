@@ -165,7 +165,7 @@ autoplay = true
 [connection signal="mouse_entered" from="VBoxContainer/MarginContainer/Start" to="." method="_on_Start_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/Start" to="." method="_on_Start_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/MarginContainer3" to="." method="_on_MarginContainer3_mouse_entered"]
-[connection signal="mouse_exited" from="VBoxContainer/MarginContainer3/How To Play" to="." method="_on_How_To_Play_mouse_exited"]
+[connection signal="mouse_entered" from="VBoxContainer/MarginContainer3/How To Play" to="." method="_on_How_To_Play_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer3/How To Play" to="." method="_on_How_To_Play_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/MarginContainer2/Credits" to="." method="_on_Credits_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer2/Credits" to="." method="_on_Credits_pressed"]
