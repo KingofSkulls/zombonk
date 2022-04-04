@@ -30,13 +30,13 @@ shape = SubResource( 1 )
 
 [node name="OmniLight" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10883, 0.208049, 0.0811006 )
-light_color = Color( 1, 0.847059, 0.631373, 1 )
+light_color = Color( 0.996078, 1, 0.858824, 1 )
 light_energy = 12.39
 omni_range = 0.5
 
 [node name="OmniLight2" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.248918, -0.00586061 )
-light_color = Color( 1, 0.847059, 0.631373, 1 )
+light_color = Color( 0.996078, 1, 0.858824, 1 )
 light_energy = 12.39
 omni_range = 0.6
 
