@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://Assets/GUI/Title/background.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Assets/GUI/Title/Title_text.png" type="Texture" id=5]
 [ext_resource path="res://Assets/GUI/Title/grass.png" type="Texture" id=6]
 [ext_resource path="res://Assets/GUI/Title/hand.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Music/spoopy title music.mp3" type="AudioStream" id=8]
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -120,7 +121,8 @@ rect_scale = Vector2( 0.2, 0.2 )
 rect_pivot_offset = Vector2( 1096, 338 )
 texture = ExtResource( 5 )
 
-[node name="Main Menu Theme" type="AudioStreamPlayer2D" parent="."]
+[node name="Main Menu Theme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
 autoplay = true
 
 [node name="HandTween" type="Tween" parent="."]

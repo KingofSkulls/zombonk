@@ -17,7 +17,7 @@ func _ready():
 		
 		var tmp_tombstone = Tombstone.instance()
 		
-		tmp_tombstone.translation = chosen_tombstone.translation + Vector3(0, 1, 0)
+		tmp_tombstone.translation = chosen_tombstone.translation + Vector3(0, 0.75, 0)
 		
 		$Navigation.add_child(tmp_tombstone)
 		
