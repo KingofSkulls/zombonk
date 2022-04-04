@@ -12,7 +12,8 @@ config_version=4
 
 config/name="Zombonk"
 run/main_scene="res://Scenes/TitleScreen.tscn"
-config/icon="res://icon.png"
+config/icon="res://Assets/GUI/icon2.png"
+config/windows_native_icon="res://Assets/GUI/icon2.ico"
 
 [display]
 
