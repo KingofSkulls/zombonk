@@ -196,7 +196,7 @@ func bonk() -> void:
 		queue_free()
 	$BonkedTimer.start(3)
 	bonked = true
-	get_node("zombieAnimations/AnimationPlayer").play("Idle Retarget")
+	get_node("zombieAnimations/AnimationPlayer").play("Bonk")
 	$Zombiecollisionshape.disabled = true
 	$Attack/CollisionShape.disabled = true
 
