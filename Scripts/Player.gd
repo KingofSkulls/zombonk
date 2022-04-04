@@ -117,7 +117,8 @@ func _process(delta) -> void:
 		$Camera/arm/AnimationPlayer.play("BonrAction") # name was an accident too late 
 														#to change it. don't @ me
 		arm_attack_cd = 0.5
-		
+	
+	
 func _physics_process(delta) -> void:
 	
 	
@@ -188,6 +189,11 @@ func reducespot(delta) -> void:
 			energy =0
 		target_node.set_param(target_node.PARAM_ENERGY, energy)
 		target_node.set_param(target_node.PARAM_SPOT_ANGLE, angle-delta*.15)
+		
+		# BATTERY BAR ??
+		$BatteryBar.value = energy/2.2
+		print(energy)
+		print($BatteryBar.value)
 
 
 func _on_batteryCollected() -> void:
