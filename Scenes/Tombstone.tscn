@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Tombstone.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Models/grave.glb" type="PackedScene" id=2]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 0.1, 0.1, 0.1 )
+
+[sub_resource type="ViewportTexture" id=2]
+viewport_path = NodePath("Quote/Viewport")
 
 [node name="Tombstone" type="Spatial"]
 script = ExtResource( 1 )
@@ -16,3 +19,20 @@ material/0 = null
 
 [node name="grave" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.25, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0 )
+
+[node name="Quote" type="Sprite3D" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.052, 0.32824, 0 )
+use_in_baked_light = true
+pixel_size = 0.002
+shaded = true
+texture = SubResource( 2 )
+
+[node name="Viewport" type="Viewport" parent="Quote"]
+size = Vector2( 90, 10 )
+transparent_bg = true
+render_target_v_flip = true
+
+[node name="Label" type="Label" parent="Quote/Viewport"]
+margin_right = 134.0
+margin_bottom = 14.0
+text = "potatos are delicious"

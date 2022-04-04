@@ -6,10 +6,27 @@ var ZombieCooldown: float
 
 onready var Zombie = load("res://Scenes/Zombie.tscn")
 
+var quotes := [
+	"We lost you",
+	"I used to be alive",
+	"Hapy Ghoust",
+	"Which will be max",
+	"Wario",
+	"Mantha",
+	"Wick",
+	"Frog",
+	"ShatteredBouquet"
+] 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	new_cd()
 	ZombieCooldown -= ZombieCDMin
+	
+	
+	
+	$Quote/Viewport.size = $Quote/Viewport/Label.rect_size
+	print($Quote/Viewport.size)
 	
 func new_cd() -> void:
 	ZombieCooldown = randi() % int(ZombieCDMax - ZombieCDMin) + ZombieCDMin

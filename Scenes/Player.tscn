@@ -72,6 +72,7 @@ margin_left = 10.0
 margin_top = 9.0
 margin_right = 262.0
 margin_bottom = 40.0
+percent_visible = false
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.299663, 0 )

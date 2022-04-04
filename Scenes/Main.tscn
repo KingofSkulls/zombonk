@@ -88,7 +88,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.03456, 1.44792, -3.45634 )
 
 [node name="Background Audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
-volume_db = -23.597
+volume_db = -17.479
 autoplay = true
 
 [node name="Navigation" type="Navigation" parent="."]
