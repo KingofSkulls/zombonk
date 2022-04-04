@@ -190,6 +190,7 @@ func _on_Brains_timeout():
 	footstepPlayer.play()
 
 func bonk() -> void:
+	player.zombbonk()
 	if !finishedspawning:
 		var tmp_batter = Battery.instance()
 		
