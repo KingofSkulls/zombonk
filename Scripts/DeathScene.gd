@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 func update_vars(time: float, zomb:float, batt:float) -> void:
-	get_node("ColorRect/MarginContainer/VBoxContainer/timeVar").text = String(time)
+	get_node("ColorRect/MarginContainer/VBoxContainer/timeVar").text = String(int(time))
 	get_node("ColorRect/MarginContainer/VBoxContainer/zomVar").text = String(zomb)
 	get_node("ColorRect/MarginContainer/VBoxContainer/batVar").text = String(batt)
 

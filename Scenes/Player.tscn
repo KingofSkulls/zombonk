@@ -254,6 +254,9 @@ margin_right = 319.0
 margin_bottom = 306.0
 text = "Main Menu"
 
+[node name="AmbientLight" type="OmniLight" parent="."]
+light_energy = 0.034
+
 [connection signal="timeout" from="WalkTimer" to="." method="_on_WalkTimer_timeout"]
 [connection signal="timeout" from="RunTimer" to="." method="_on_RunTimer_timeout"]
 [connection signal="pressed" from="DeathScene/ColorRect/MarginContainer/VBoxContainer/Button" to="DeathScene" method="_on_Button_pressed"]
