@@ -312,4 +312,6 @@ func death() -> void:
 	
 func zombbonk():
 	zombiesbonked+=1
+	$Bonk.play()
+		
 

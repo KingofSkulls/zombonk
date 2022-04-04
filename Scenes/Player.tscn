@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Audio/footstep1.mp3" type="AudioStream" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Assets/GUI/Title/TitleScreenTheme.tres" type="Theme" id=10]
 [ext_resource path="res://Assets/GUI/Fonts/old_london/OldLondon.ttf" type="DynamicFontData" id=11]
 [ext_resource path="res://Scripts/DeathScene.gd" type="Script" id=12]
+[ext_resource path="res://Assets/Audio/PoundOfFlesh.wav" type="AudioStream" id=13]
 
 [sub_resource type="StyleBoxFlat" id=10]
 bg_color = Color( 1, 1, 1, 1 )
@@ -256,6 +257,10 @@ text = "Main Menu"
 
 [node name="AmbientLight" type="OmniLight" parent="."]
 light_energy = 0.034
+
+[node name="Bonk" type="AudioStreamPlayer3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.270269, -1.47477 )
+stream = ExtResource( 13 )
 
 [connection signal="timeout" from="WalkTimer" to="." method="_on_WalkTimer_timeout"]
 [connection signal="timeout" from="RunTimer" to="." method="_on_RunTimer_timeout"]
