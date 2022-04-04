@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://Assets/GUI/Title/background.png" type="Texture" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://Assets/GUI/Title/grass.png" type="Texture" id=6]
 [ext_resource path="res://Assets/GUI/Title/hand.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Music/spoopy title music.mp3" type="AudioStream" id=8]
+[ext_resource path="res://Assets/GUI/Title/zombie_text.png" type="Texture" id=9]
+[ext_resource path="res://Assets/GUI/Title/bonk_text.png" type="Texture" id=10]
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -112,11 +114,30 @@ mouse_filter = 2
 texture = ExtResource( 6 )
 stretch_mode = 4
 
-[node name="TitleText" type="TextureRect" parent="."]
+[node name="zombieText" type="TextureRect" parent="."]
+margin_left = -707.0
+margin_top = -220.0
+margin_right = 2876.0
+margin_bottom = 534.0
+rect_scale = Vector2( 0.2, 0.2 )
+rect_pivot_offset = Vector2( 1096, 338 )
+texture = ExtResource( 9 )
+
+[node name="bonkText" type="TextureRect" parent="."]
 margin_left = -707.0
 margin_top = -565.0
 margin_right = 2876.0
 margin_bottom = 189.0
+rect_scale = Vector2( 0.2, 0.2 )
+rect_pivot_offset = Vector2( 1096, 338 )
+texture = ExtResource( 10 )
+
+[node name="titleText" type="TextureRect" parent="."]
+visible = false
+margin_left = -707.0
+margin_top = -220.0
+margin_right = 2876.0
+margin_bottom = 534.0
 rect_scale = Vector2( 0.2, 0.2 )
 rect_pivot_offset = Vector2( 1096, 338 )
 texture = ExtResource( 5 )

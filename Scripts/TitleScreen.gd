@@ -46,6 +46,10 @@ func _on_Exit_mouse_entered() -> void:
 
 func title_slide_in(delta: float) ->void:
 	var  slideSpeed: float = 400.0
-	if(get_node("TitleText").rect_position.y < -220):
-		get_node("TitleText").rect_position.y += slideSpeed * delta
+	if(get_node("bonkText").rect_position.y < -220):
+		get_node("bonkText").rect_position.y += slideSpeed * delta
+	else:
+		get_node("bonkText").hide()
+		get_node("zombieText").hide()
+		get_node("titleText").show()
 
