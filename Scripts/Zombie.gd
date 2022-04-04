@@ -17,7 +17,7 @@ var cur_target = Vector3(0,0.5,0)
 var walk_animation = "Walk In Place Retarget"
 onready var nav = get_parent()
 onready var player = $"../../Player"
-onready var anim = $AnimationPlayer
+onready var anim = $zombieAnimations/AnimationPlayer
 onready var Battery = load("res://Scenes/battery.tscn")
 signal playerDamaged
 
