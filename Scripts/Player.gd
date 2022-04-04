@@ -21,7 +21,7 @@ var mouseDelta := Vector2()
 var stopped := true
 var sprint_time := 4.0
 var base_sprint_time := 4.0
-
+var dead :=false
 var timesurvived:= 0
 var zombiesbonked:= 0
 var batteriescollected := 0
@@ -47,6 +47,7 @@ func _input(event) -> void:
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	$DeathScene.hide()
 
 func remove_weapon_hitboxes():
 	for c in get_children():
@@ -54,7 +55,8 @@ func remove_weapon_hitboxes():
 			c.queue_free()
 
 func _process(delta) -> void:
-	timealive+=delta
+	if not dead:
+		timealive+=delta
 	reducespot(delta)
 	timealive+=delta
 	camera.rotation_degrees.x -= mouseDelta.y * lookSensitivity * delta
@@ -281,9 +283,13 @@ func _on_Zombie_playerDamaged() -> void:
 	$DamageVignette.self_modulate.a = (100 - health) / 100
 	if health <= 0:
 		death()
+		
 
 func death() -> void:
 	print("You Died")
+	get_tree().paused = true
+	$DeathScene.show()
+	dead=true
 	
 func zombbonk():
 	zombiesbonked+=1
