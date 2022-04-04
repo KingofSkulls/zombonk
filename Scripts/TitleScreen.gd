@@ -53,3 +53,6 @@ func title_slide_in(delta: float) ->void:
 		get_node("zombieText").hide()
 		get_node("titleText").show()
 
+
+func _on_How_To_Play_pressed() -> void:
+	get_tree().change_scene("res://Scenes/howToPlay.tscn")

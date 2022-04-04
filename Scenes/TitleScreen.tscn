@@ -45,9 +45,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -128.0
-margin_top = -263.0
+margin_top = -301.0
 margin_right = 128.0
-margin_bottom = -115.0
+margin_bottom = -94.0
 theme = ExtResource( 4 )
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
@@ -81,7 +81,20 @@ margin_right = 256.0
 margin_bottom = 148.0
 custom_constants/margin_top = 25
 
-[node name="Exit" type="Button" parent="VBoxContainer/MarginContainer3"]
+[node name="How To Play" type="Button" parent="VBoxContainer/MarginContainer3"]
+margin_top = 25.0
+margin_right = 256.0
+margin_bottom = 55.0
+custom_fonts/font = ExtResource( 3 )
+text = "How to Play"
+
+[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 152.0
+margin_right = 256.0
+margin_bottom = 207.0
+custom_constants/margin_top = 25
+
+[node name="Exit" type="Button" parent="VBoxContainer/MarginContainer4"]
 margin_top = 25.0
 margin_right = 256.0
 margin_bottom = 55.0
@@ -153,5 +166,8 @@ autoplay = true
 [connection signal="mouse_entered" from="VBoxContainer/MarginContainer2/Credits" to="." method="_on_Credits_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer2/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/MarginContainer3" to="." method="_on_MarginContainer3_mouse_entered"]
-[connection signal="mouse_entered" from="VBoxContainer/MarginContainer3/Exit" to="." method="_on_Exit_mouse_entered"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer3/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/MarginContainer3/How To Play" to="." method="_on_Exit_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer3/How To Play" to="." method="_on_How_To_Play_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/MarginContainer4" to="." method="_on_MarginContainer3_mouse_entered"]
+[connection signal="mouse_entered" from="VBoxContainer/MarginContainer4/Exit" to="." method="_on_Exit_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer4/Exit" to="." method="_on_Exit_pressed"]
