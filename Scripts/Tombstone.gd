@@ -20,7 +20,7 @@ var quotes := [
 	"It should auto complere",
 	"Needs to be EXCAT",
 	"That's lore!!",
-	"ITS WILL SMITH ZOMBIE",
+	"IT'S WILL SMITH ZOMBIE",
 	"He is stanced up",
 	"I probably hit every button",
 	"I'm a button pusher",
@@ -38,7 +38,8 @@ var quotes := [
 	"Ghost juice",
 	"That's what someone who is saying an excuse would say",
 	"I can't argue because I already left",
-	"You have to play with your heart, not your brain"
+	"You have to play with your heart, not your brain",
+	"I'll take a potato chip"
 ]
 
 # Called when the node enters the scene tree for the first time.
