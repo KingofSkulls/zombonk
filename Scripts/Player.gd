@@ -16,11 +16,11 @@ var runWalktimerStarted := false
 var can_jump := 0.0
 export var god := false
 var vel := Vector3()
-var health := 100
+var health := 100.0
 var mouseDelta := Vector2()
 var stopped := true
-var sprint_time := 4.0
-var base_sprint_time := 4.0
+var sprint_time := 6.0
+var base_sprint_time := 6.0
 var dead :=false
 var timesurvived:= 0
 var zombiesbonked:= 0
@@ -55,6 +55,9 @@ func remove_weapon_hitboxes():
 			c.queue_free()
 
 func _process(delta) -> void:
+	health+=.4
+	if health > 100.0:
+		health = 100.0
 	var f = $Camera/Flashlight
 	$"Battery Bar".value = f.get_param(f.PARAM_ENERGY) / 2.2 * 100.0
 	
@@ -123,9 +126,11 @@ func _process(delta) -> void:
 			despawn_hitbox_cd = 2
 			
 	if Input.is_action_pressed("attack"):
-		$Camera/arm/AnimationPlayer.play("BonrAction") # name was an accident too late 
-														#to change it. don't @ me
-		arm_attack_cd = 0.5
+		if sprint_time > 2.0:
+			sprint_time-=2.0
+			$Camera/arm/AnimationPlayer.play("BonrAction") # name was an accident too late 
+															#to change it. don't @ me
+			arm_attack_cd = 0.5
 	
 	
 func _physics_process(delta) -> void:

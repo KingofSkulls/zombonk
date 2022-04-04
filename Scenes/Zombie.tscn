@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Assets/Models/Creatures/peopleColors_004.material" type="Material" id=1]
 [ext_resource path="res://Scripts/Zombie.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Audio/Zombie-Aggressive-Attack-A5-www.fesliyanstudios.com.mp3" type="AudioStream" id=3]
 [ext_resource path="res://Assets/Audio/spawn bell.mp3" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Audio/PoundOfFlesh.wav" type="AudioStream" id=5]
 
 [sub_resource type="BoxShape" id=5]
 extents = Vector3( 0.270678, 0.641098, 0.276122 )
@@ -3307,6 +3308,10 @@ anims/ZombAction = SubResource( 34 )
 
 [node name="Spawncue" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 4 )
+
+[node name="Hit" type="AudioStreamPlayer3D" parent="."]
+transform = Transform( 1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0.700348, 0.255476 )
+stream = ExtResource( 5 )
 
 [connection signal="area_entered" from="CollisionArea" to="." method="_on_CollisionArea_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
