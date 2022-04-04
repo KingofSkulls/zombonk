@@ -1,7 +1,7 @@
 extends Spatial
 
 const TombstoneCount = 10
-const BatteryCount = 10
+const BatteryCount = 15
 
 onready var Tombstone = load("res://Scenes/Tombstone.tscn")
 onready var Battery = load("res://Scenes/battery.tscn")

@@ -103,9 +103,12 @@ transform = Transform( -8.69857e-09, 0, -0.199, 0, 0.199, 0, 0.199, 0, -8.69857e
 
 [node name="armLight" type="OmniLight" parent="Camera/arm"]
 transform = Transform( -2.19655e-07, 0, 5.02513, 0, 5.02513, 0, -5.02513, 0, -2.19655e-07, 1.2219, 1.69347, 1.63718 )
+visible = false
 layers = 2
-light_energy = 0.56
+light_energy = 0.02
+light_indirect_energy = 0.05
 light_cull_mask = 4294966274
+omni_range = 0.1
 
 [node name="Flashlight" type="SpotLight" parent="Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125515, -0.25724, -0.0228176 )
